@@ -2,22 +2,22 @@ package com.mygdx.game.Part;
 
 public class Frame {
 
-    private String protection;
-    private String powerSource;
+    private Material material;
+    private PowerSource powerSource;
 
-    public String getProtection() {
-        return protection;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setProtection(String protection) {
-        this.protection = protection;
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
-    public String getPowerSource() {
+    public PowerSource getPowerSource() {
         return powerSource;
     }
 
-    public void setPowerSource(String powerSource) {
+    public void setPowerSource(PowerSource powerSource) {
         this.powerSource = powerSource;
     }
 }

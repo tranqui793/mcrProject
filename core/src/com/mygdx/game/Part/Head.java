@@ -2,22 +2,22 @@ package com.mygdx.game.Part;
 
 public class Head {
 
-    private String sensor;
-    private String comm;
+    private Sensor sensor;
+    private Weapon weapon;
 
-    public String getSensor() {
+    public Sensor getSensor() {
         return sensor;
     }
 
-    public void setSensor(String sensor) {
+    public void setSensor(Sensor sensor) {
         this.sensor = sensor;
     }
 
-    public String getComm() {
-        return comm;
+    public Weapon getWeapon() {
+        return weapon;
     }
 
-    public void setComm(String comm) {
-        this.comm = comm;
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 }

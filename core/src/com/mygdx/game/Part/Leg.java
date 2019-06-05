@@ -2,13 +2,13 @@ package com.mygdx.game.Part;
 
 public class Leg {
 
-    private String mobility;
+    private Shape shape;
 
-    public String getMobility() {
-        return mobility;
+    public Shape getShape() {
+        return shape;
     }
 
-    public void setMobility(String mobility) {
-        this.mobility = mobility;
+    public void setShape(Shape shape) {
+        this.shape = shape;
     }
 }
