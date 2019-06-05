@@ -1,4 +1,4 @@
-package com.mygdx.game.AbstractBuilders;
+package com.mygdx.game.Builder;
 
 import com.mygdx.game.Part.Leg;
 
