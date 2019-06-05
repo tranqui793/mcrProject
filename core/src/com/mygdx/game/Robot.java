@@ -1,8 +1,11 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Part.Part;
 
-public abstract class Robot {
+import javax.swing.*;
+
+public class Robot {
 
     private int armor;
     private int dodge;
@@ -16,6 +19,11 @@ public abstract class Robot {
     private Part Head;
     private Part leg;
 
+
+    public void draw(SpriteBatch batch,int x,int y){
+
+        frame.draw(batch,x,y);
+    }
     public Part getArm() {
         return arm;
     }

@@ -1,12 +1,18 @@
 package com.mygdx.game.Part;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public  abstract class Part {
 
+    protected Sprite sprite;
     private String color;
     private String price;
     private String slot;
     private String seal;
 
+
+    public abstract void draw(SpriteBatch batch,int x, int y);
     public String getColor() {
         return color;
     }
@@ -37,5 +43,13 @@ public  abstract class Part {
 
     public void setSeal(String seal) {
         this.seal = seal;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
     }
 }

@@ -1,6 +1,8 @@
 package com.mygdx.game.Part;
 
-public class Arm {
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class Arm  {
 
     //a modifier
     private String weapon;
@@ -12,4 +14,6 @@ public class Arm {
     public void setWeapon(String weapon) {
         this.weapon = weapon;
     }
+
+
 }
