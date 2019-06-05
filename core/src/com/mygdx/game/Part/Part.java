@@ -1,41 +1,14 @@
 package com.mygdx.game.Part;
 
-public  abstract class Part {
+public abstract class Part {
 
-    private String color;
-    private String price;
-    private String slot;
-    private String seal;
+    private int energyCost;
 
-    public String getColor() {
-        return color;
+    public int getEnergyCost() {
+        return energyCost;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getSlot() {
-        return slot;
-    }
-
-    public void setSlot(String slot) {
-        this.slot = slot;
-    }
-
-    public String getSeal() {
-        return seal;
-    }
-
-    public void setSeal(String seal) {
-        this.seal = seal;
+    public void setEnergyCost(int energyCost) {
+        this.energyCost = energyCost;
     }
 }
