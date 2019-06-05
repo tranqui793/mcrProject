@@ -1,4 +1,9 @@
 package com.mygdx.game.AbstractBuilders;
 
-public abstract class HeadBuilder implements PartBuilder {
+import com.mygdx.game.Part.Head;
+
+public class HeadBuilder implements PartBuilder {
+    public Head build() {
+        return null;
+    }
 }

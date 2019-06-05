@@ -1,6 +1,9 @@
 package com.mygdx.game.Part;
 
-public class Frame {
+import com.mygdx.game.Part.SubPart.Material;
+import com.mygdx.game.Part.SubPart.ShieldGenerator;
+
+public class Frame extends Part {
 
     private Material material;
     private int power;

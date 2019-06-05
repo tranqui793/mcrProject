@@ -1,6 +1,8 @@
 package com.mygdx.game.Part;
 
-public class Head {
+import com.mygdx.game.Part.SubPart.Sensor;
+
+public class Head extends Part {
 
     private Sensor sensor;
 

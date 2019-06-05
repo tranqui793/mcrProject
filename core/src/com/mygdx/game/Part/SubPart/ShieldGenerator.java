@@ -1,4 +1,4 @@
-package com.mygdx.game.Part;
+package com.mygdx.game.Part.SubPart;
 
 public enum ShieldGenerator {
     LIGHT(10, 20), MEDIUM(20, 40), HEAVY(40, 80);

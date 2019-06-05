@@ -1,4 +1,9 @@
 package com.mygdx.game.AbstractBuilders;
 
-public abstract class ArmBuilder implements PartBuilder {
+import com.mygdx.game.Part.Arm;
+
+public class ArmBuilder implements PartBuilder {
+    public Arm build() {
+        return null;
+    }
 }

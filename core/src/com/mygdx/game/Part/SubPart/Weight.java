@@ -1,4 +1,4 @@
-package com.mygdx.game.Part;
+package com.mygdx.game.Part.SubPart;
 
 public enum Weight {
     HEAVY(1.5, 0.5), MEDIUM(1, 1), LIGHT(0.5, 1.5);

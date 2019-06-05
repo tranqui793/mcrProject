@@ -1,4 +1,4 @@
-package com.mygdx.game.Part;
+package com.mygdx.game.Part.SubPart;
 
 public enum Shape {
     HEAVY(0, 50), MEDIUM(10, 25), LIGHT(20, 0);

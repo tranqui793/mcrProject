@@ -1,4 +1,9 @@
 package com.mygdx.game.AbstractBuilders;
 
-public abstract class LegBuilder implements PartBuilder {
+import com.mygdx.game.Part.Leg;
+
+public class LegBuilder implements PartBuilder {
+    public Leg build() {
+        return null;
+    }
 }

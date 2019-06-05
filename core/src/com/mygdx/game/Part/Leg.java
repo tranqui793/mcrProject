@@ -1,6 +1,8 @@
 package com.mygdx.game.Part;
 
-public class Leg {
+import com.mygdx.game.Part.SubPart.Shape;
+
+public class Leg extends Part {
 
     private Shape shape;
 

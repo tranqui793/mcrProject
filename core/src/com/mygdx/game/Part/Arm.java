@@ -1,6 +1,9 @@
 package com.mygdx.game.Part;
 
-public class Arm {
+import com.mygdx.game.Part.SubPart.Weapon;
+import com.mygdx.game.Part.SubPart.Weight;
+
+public class Arm extends Part {
 
     private Weapon weapon;
     private Weight weight;

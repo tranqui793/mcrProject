@@ -1,4 +1,4 @@
-package com.mygdx.game.Part;
+package com.mygdx.game.Part.SubPart;
 
 public enum Sensor {
     THERMIC(0, 20), HOLOGRAPHIC(10, 10), SONIC(20, 0);

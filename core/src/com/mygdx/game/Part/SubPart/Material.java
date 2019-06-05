@@ -1,4 +1,4 @@
-package com.mygdx.game.Part;
+package com.mygdx.game.Part.SubPart;
 
 public enum Material {
     TITANIUM(50, 100),

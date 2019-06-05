@@ -1,4 +1,4 @@
-package com.mygdx.game.Part;
+package com.mygdx.game.Part.SubPart;
 
 public enum Weapon {
     KINETIC(1, 1, 80, 2, 6, 10),
