@@ -1,5 +1,6 @@
 package com.mygdx.game.Part;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -14,7 +15,9 @@ public class Frame extends Part{
     private Vector2 anchorLeg = new Vector2(0.5f,0.1f);
     private Leg leg;
 
-    private Vector2 anchorLeftArm,anchorRightArm= new Vector2(0.5f,0.67f);
+    private Vector2 anchorLeftArm= new Vector2(0.5f,0.67f);
+    private Vector2 anchorRightArm= new Vector2(0.5f,0.67f);
+
     private Arm leftArm,rightArm;
 
     private String protection;
@@ -71,8 +74,13 @@ public class Frame extends Part{
 
     @Override
     public void draw(SpriteBatch batch,int x, int y) {
+
+        leftArm.draw(batch,(int)(x+anchorLeftArm.x*sprite.getWidth()), (int) (y+anchorLeftArm.y*sprite.getHeight()));
+        leg.draw(batch,(int)(x+anchorLeg.x*sprite.getWidth()), (int) (y+anchorLeg.y*sprite.getHeight()));
         head.draw(batch,(int)(x+anchorHead.x*sprite.getWidth()), (int) (y+anchorHead.y*sprite.getHeight()));
+        sprite.setColor(Color.CHARTREUSE);
         sprite.setPosition(x,y);
         sprite.draw(batch);
+        rightArm.draw(batch,(int)(x+anchorRightArm.x*sprite.getWidth()), (int) (y+anchorRightArm.y*sprite.getHeight()));
     }
 }
