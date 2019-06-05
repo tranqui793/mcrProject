@@ -1,4 +1,5 @@
 package com.mygdx.game.AbstractBuilders;
 
-public interface PartBuilder {
+interface PartBuilder {
+    void build();
 }
