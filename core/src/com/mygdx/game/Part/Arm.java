@@ -2,7 +2,6 @@ package com.mygdx.game.Part;
 
 public class Arm {
 
-    //a modifier
     private Weapon weapon;
     private Weight weight;
 

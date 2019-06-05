@@ -3,7 +3,8 @@ package com.mygdx.game.Part;
 public class Frame {
 
     private Material material;
-    private PowerSource powerSource;
+    private int power;
+    private ShieldGenerator shieldGenerator;
 
     public Material getMaterial() {
         return material;
@@ -13,11 +14,19 @@ public class Frame {
         this.material = material;
     }
 
-    public PowerSource getPowerSource() {
-        return powerSource;
+    public int getPower() {
+        return power;
     }
 
-    public void setPowerSource(PowerSource powerSource) {
-        this.powerSource = powerSource;
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public ShieldGenerator getShieldGenerator() {
+        return shieldGenerator;
+    }
+
+    public void setShieldGenerator(ShieldGenerator shieldGenerator) {
+        this.shieldGenerator = shieldGenerator;
     }
 }

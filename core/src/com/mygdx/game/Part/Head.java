@@ -3,7 +3,6 @@ package com.mygdx.game.Part;
 public class Head {
 
     private Sensor sensor;
-    private Weapon weapon;
 
     public Sensor getSensor() {
         return sensor;
@@ -13,11 +12,4 @@ public class Head {
         this.sensor = sensor;
     }
 
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
 }
