@@ -1,6 +1,10 @@
 package com.mygdx.game.Part.SubPart;
 
-public enum Weapon {
+import com.mygdx.game.Part.Part;
+
+import java.sql.Driver;
+
+public enum Weapon  {
     KINETIC(1, 1, 80, 2, 6, 10),
     MISSILE(1.2, 0.8, 60, 30, 0.5, 10),
     LASER(0.5, 1.5, 100, 10, 1, 10);

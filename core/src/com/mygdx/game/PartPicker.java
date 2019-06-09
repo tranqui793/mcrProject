@@ -20,7 +20,7 @@ import com.mygdx.game.Part.Part;
 
 import java.util.ArrayList;
 
-public class PartPicker extends Table {
+public abstract class PartPicker extends Table {
 
     ImageButton leftArrow;
     ImageButton rightArrow;
@@ -28,9 +28,10 @@ public class PartPicker extends Table {
     Part currentPart;
     int currentIndex;
     ArrayList<Part> availableParts;
+    Robot target;
 
-
-    public PartPicker(float x, float y, int height, int width,ArrayList<Part> parts) {
+    public PartPicker(float x, float y, int height, int width,ArrayList<Part> parts,Robot target) {
+        this.target= target;
         availableParts=parts;
         setPosition(x, y);
         setSize(width, height);
@@ -53,14 +54,14 @@ public class PartPicker extends Table {
         });
         currentPart = availableParts.get(currentIndex);
 
-        currentPart.setSprite(new Sprite(new Texture(Gdx.files.internal("leg.png"))));
+
         image = new Image();
         image.setDrawable(new SpriteDrawable(currentPart.getSprite()));
         image.setScaling(Scaling.fit);
-        setBackground(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("images.png")))));
-        add(leftArrow).width(35);
+        setBackground(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("pickerBackGround.png")))));
+        add(leftArrow).width(35).pad(10);
         add(image).expand();
-        add(rightArrow).width(35);
+        add(rightArrow).width(35).pad(10);
     }
 
     public void setCurrentPart(Part currentPart) {
@@ -82,11 +83,7 @@ public class PartPicker extends Table {
         }
         update();
     }
-
-    private void update(){
-        currentPart=availableParts.get(currentIndex);
-        image.setDrawable(new SpriteDrawable(currentPart.getSprite()));
-    }
+    public abstract void update();
 
 
 }

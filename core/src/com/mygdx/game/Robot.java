@@ -3,6 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.mygdx.game.Part.Frame;
+import com.mygdx.game.Part.Leg;
 import com.mygdx.game.Part.Part;
 
 import javax.swing.*;
@@ -60,6 +62,7 @@ public class Robot extends Actor {
     }
 
     public void setLeg(Part leg) {
+        ((Frame)frame).setLeg((Leg)leg);
         this.leg = leg;
     }
 

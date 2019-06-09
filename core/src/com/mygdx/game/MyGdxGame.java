@@ -1,6 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -8,17 +7,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
 import com.mygdx.game.Part.*;
+import com.mygdx.game.Part.SubPart.Shape;
 
 import java.util.ArrayList;
 
@@ -51,11 +47,32 @@ public class MyGdxGame extends Game {
         r = new Robot();
         f = new Frame();
         Head h = new Head();
-        Leg l = new Leg();
+
+        Leg l= new Leg();
+        l.setSprite(new Sprite(new Texture(Gdx.files.internal("leg1.png"))));
+        l.setShape(Shape.HEAVY);
+        Leg l1= new Leg();
+        l1.setSprite(new Sprite(new Texture(Gdx.files.internal("leg1.png"))));
+        l1.setShape(Shape.HEAVY);
+        Leg l2= new Leg();
+        l2.setSprite(new Sprite(new Texture(Gdx.files.internal("leg2.png"))));
+        l2.setShape(Shape.MEDIUM);
+        Leg l3=new Leg();
+        l3.setSprite(new Sprite(new Texture(Gdx.files.internal("leg3.png"))));
+        l3.setShape(Shape.LIGHT);
+
+        ArrayList<Part> legs=new ArrayList<Part>();
+        legs.add(l1);
+        legs.add(l2);
+        legs.add(l3);
+
+
+        partPicker=new LegPicker(515,0,256,256,legs,r);
+
         Arm leftArm, rightArm;
         leftArm = new Arm();
         rightArm = new Arm();
-        l.setSprite(new Sprite(new Texture(Gdx.files.internal("leg.png"))));
+
         leftArm.setSprite(new Sprite(new Texture(Gdx.files.internal("arm.png"))));
         rightArm.setSprite(new Sprite(new Texture(Gdx.files.internal("arm.png"))));
         h.setSprite(new Sprite(new Texture(Gdx.files.internal("head.png"))));
@@ -66,16 +83,10 @@ public class MyGdxGame extends Game {
         f.setLeg(l);
         f.setRightArm(rightArm);
 
-        ArrayList<Part> parts=new ArrayList<Part>();
-        parts.add(l);
-        parts.add(f);
-        parts.add(leftArm);
-
-        partPicker=new PartPicker(515,256,256,256,parts);
 
 
         //stage.addActor(r);
-       stage.addActor(partPicker);
+         stage.addActor(partPicker);
 
        r.setPosition(100,0);
     }
@@ -88,7 +99,7 @@ public class MyGdxGame extends Game {
 
     @Override
     public void render() {
-      /* Gdx.gl.glClearColor(1, 1, 1, 1);
+      Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
@@ -99,7 +110,7 @@ public class MyGdxGame extends Game {
 		m.setToTranslation(256,0,0);
 		//batch.setTransformMatrix(m);
         batch.end();
-        batch2.begin();
+       /* batch2.begin();
         r.draw(batch2,0,0);
 
         Matrix4 m2= batch2.getTransformMatrix();

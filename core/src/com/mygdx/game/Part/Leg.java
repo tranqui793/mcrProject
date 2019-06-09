@@ -27,7 +27,7 @@ public class Leg extends Part{
     public void draw(Batch batch, float x, float y) {
 
             sprite.setPosition(x - sprite.getWidth() * hooktoFrame.x, y - sprite.getHeight() * hooktoFrame.y);
-            sprite.setColor(Color.CHARTREUSE);
+
 
         sprite.draw(batch);
     }

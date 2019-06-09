@@ -2,18 +2,15 @@ package com.mygdx.game.Part;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.mygdx.game.myDrawable;
 
-public  abstract class Part  {
+public  abstract class Part  implements myDrawable {
 
     protected Sprite sprite;
     
-  private int energyCost;
+    private int energyCost;
 
     public abstract void draw(Batch batch, float x, float y);
-
-
-
-  
 
     public int getEnergyCost() {
         return energyCost;
@@ -25,7 +22,7 @@ public  abstract class Part  {
     }
 
     public Sprite getSprite() {
-        return sprite;
+        return new Sprite(sprite);
     }
 
     public void setSprite(Sprite sprite) {
