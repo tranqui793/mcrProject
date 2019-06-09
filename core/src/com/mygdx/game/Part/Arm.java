@@ -24,11 +24,12 @@ public class Arm extends Part {
 
     @Override
     public void draw(Batch batch, float x, float y) {
-        sprite.setPosition(x-sprite.getWidth()*hooktoFrame.x,y-sprite.getHeight()*hooktoFrame.y);
+        sprite.setPosition(x - sprite.getWidth() * hooktoFrame.x, y - sprite.getHeight() * hooktoFrame.y);
         sprite.setColor(Color.GRAY);
         sprite.draw(batch);
 
-    public Weight getWeight() {
+    }
+    public Weight getWeight(){
         return weight;
     }
 

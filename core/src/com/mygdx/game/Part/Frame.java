@@ -57,10 +57,7 @@ public class Frame extends Part{
         this.head = head;
     }
 
-    public String getProtection() {
-        return protection;
 
-  
     public Material getMaterial() {
         return material;
     }
@@ -89,8 +86,6 @@ public class Frame extends Part{
     public int widthOffset(){
         return (int) (- sprite.getHeight()/2);
     }
-    public void setPowerSource(String powerSource) {
-        this.powerSource = powerSource;
 
     public void setShieldGenerator(ShieldGenerator shieldGenerator) {
         this.shieldGenerator = shieldGenerator;

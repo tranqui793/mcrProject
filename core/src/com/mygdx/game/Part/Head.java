@@ -11,10 +11,6 @@ public class Head extends Part {
 
 
     //private Vector2 anchorSensor= new Vector2(0.8f,0.5f);
-    private String sensor;
-
-
-    private String comm;
 
 
     private Sensor sensor;
@@ -27,14 +23,6 @@ public class Head extends Part {
         this.sensor = sensor;
     }
 
-
-    public String getComm() {
-        return comm;
-    }
-
-    public void setComm(String comm) {
-        this.comm = comm;
-    }
 
     @Override
     public void draw(Batch batch, float x, float y) {
