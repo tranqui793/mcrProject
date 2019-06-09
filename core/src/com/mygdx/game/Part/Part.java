@@ -1,9 +1,9 @@
 package com.mygdx.game.Part;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public  abstract class Part {
+public  abstract class Part  {
 
     protected Sprite sprite;
     private String color;
@@ -12,7 +12,7 @@ public  abstract class Part {
     private String seal;
 
 
-    public abstract void draw(SpriteBatch batch,int x, int y);
+    public abstract void draw(Batch batch, float x, float y);
     public String getColor() {
         return color;
     }
@@ -52,4 +52,6 @@ public  abstract class Part {
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
+
+
 }

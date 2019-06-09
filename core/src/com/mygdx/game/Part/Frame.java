@@ -1,8 +1,7 @@
 package com.mygdx.game.Part;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 
 public class Frame extends Part{
@@ -67,20 +66,27 @@ public class Frame extends Part{
         return powerSource;
     }
 
+    public int heightOffset(){
+        return (int) (leg.getSprite().getHeight()*leg.getHooktoFrame().y- sprite.getHeight()*anchorLeg.y);
+    }
+    public int widthOffset(){
+        return (int) (- sprite.getHeight()/2);
+    }
     public void setPowerSource(String powerSource) {
         this.powerSource = powerSource;
     }
 
 
     @Override
-    public void draw(SpriteBatch batch,int x, int y) {
-
-        leftArm.draw(batch,(int)(x+anchorLeftArm.x*sprite.getWidth()), (int) (y+anchorLeftArm.y*sprite.getHeight()));
-        leg.draw(batch,(int)(x+anchorLeg.x*sprite.getWidth()), (int) (y+anchorLeg.y*sprite.getHeight()));
-        head.draw(batch,(int)(x+anchorHead.x*sprite.getWidth()), (int) (y+anchorHead.y*sprite.getHeight()));
+    public void draw(Batch batch, float x, float y) {
+        float frameY= y+ heightOffset();
+        float frameX= x+ widthOffset();
+        leftArm.draw(batch,(int)(frameX+anchorLeftArm.x*sprite.getWidth()), (int) (frameY+anchorLeftArm.y*sprite.getHeight()));
+        leg.draw(batch,(int)(frameX+anchorLeg.x*sprite.getWidth()), (int) (frameY+anchorLeg.y*sprite.getHeight()));
+        head.draw(batch,(int)(frameX+anchorHead.x*sprite.getWidth()), (int) (frameY+anchorHead.y*sprite.getHeight()));
         sprite.setColor(Color.CHARTREUSE);
-        sprite.setPosition(x,y);
+        sprite.setPosition(frameX,frameY);
         sprite.draw(batch);
-        rightArm.draw(batch,(int)(x+anchorRightArm.x*sprite.getWidth()), (int) (y+anchorRightArm.y*sprite.getHeight()));
+        rightArm.draw(batch,(int)(frameX+anchorRightArm.x*sprite.getWidth()), (int) (frameY+anchorRightArm.y*sprite.getHeight()));
     }
 }

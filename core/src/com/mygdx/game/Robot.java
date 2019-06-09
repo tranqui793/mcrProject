@@ -1,11 +1,13 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.Part.Part;
 
 import javax.swing.*;
 
-public class Robot {
+public class Robot extends Actor {
 
     private int armor;
     private int dodge;
@@ -20,7 +22,12 @@ public class Robot {
     private Part leg;
 
 
-    public void draw(SpriteBatch batch,int x,int y){
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        frame.draw(batch, getX(),getY());
+    }
+
+    public void draw(SpriteBatch batch, int x, int y){
 
         frame.draw(batch,x,y);
     }
