@@ -4,7 +4,7 @@ package com.mygdx.game.Part;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-
+import com.mygdx.game.Part.SubPart.Sensor;
 public class Head extends Part {
 
     private Vector2 hooktoFrame = new Vector2(0.5f,0.1f);
@@ -16,13 +16,17 @@ public class Head extends Part {
 
     private String comm;
 
-    public String getSensor() {
+
+    private Sensor sensor;
+
+    public Sensor getSensor() {
         return sensor;
     }
 
-    public void setSensor(String sensor) {
+    public void setSensor(Sensor sensor) {
         this.sensor = sensor;
     }
+
 
     public String getComm() {
         return comm;
@@ -39,4 +43,5 @@ public class Head extends Part {
         sprite.setColor(Color.CHARTREUSE);
         sprite.draw(batch);
     }
+
 }

@@ -1,9 +1,11 @@
 package com.mygdx.game.Part;
 
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-
+import com.mygdx.game.Part.SubPart.Material;
+import com.mygdx.game.Part.SubPart.ShieldGenerator;
 public class Frame extends Part{
 
 
@@ -19,8 +21,9 @@ public class Frame extends Part{
 
     private Arm leftArm,rightArm;
 
-    private String protection;
-    private String powerSource;
+  private Material material;
+    private int power;
+    private ShieldGenerator shieldGenerator;
 
     public Leg getLeg() {
         return leg;
@@ -56,15 +59,29 @@ public class Frame extends Part{
 
     public String getProtection() {
         return protection;
+
+  
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setProtection(String protection) {
-        this.protection = protection;
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
-    public String getPowerSource() {
-        return powerSource;
+    public int getPower() {
+        return power;
+
     }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public ShieldGenerator getShieldGenerator() {
+        return shieldGenerator;
+    }
+
 
     public int heightOffset(){
         return (int) (leg.getSprite().getHeight()*leg.getHooktoFrame().y- sprite.getHeight()*anchorLeg.y);
@@ -74,6 +91,9 @@ public class Frame extends Part{
     }
     public void setPowerSource(String powerSource) {
         this.powerSource = powerSource;
+
+    public void setShieldGenerator(ShieldGenerator shieldGenerator) {
+        this.shieldGenerator = shieldGenerator;
     }
 
 
