@@ -13,4 +13,19 @@ public enum Material {
         this.armor = armor;
     }
 
+    public int getEnergyCost() {
+        return cost;
+    }
+
+    public void setEnergyCost(int cost) {
+        this.cost = cost;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
+
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
 }
