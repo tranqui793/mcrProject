@@ -4,8 +4,10 @@ import com.mygdx.game.Builder.ArmBuilder;
 import com.mygdx.game.Builder.HeadBuilder;
 import com.mygdx.game.Builder.LegBuilder;
 import com.mygdx.game.Part.Frame;
+import com.mygdx.game.Part.SubPart.Material;
+import com.mygdx.game.Part.SubPart.ShieldGenerator;
 
-public abstract class FrameBuilder {
+public  class FrameBuilder {
     public Frame frame = new Frame();
 
     public Frame getFrame() {
@@ -19,24 +21,31 @@ public abstract class FrameBuilder {
         return frame.getPower();
     }
 
-    public abstract void buildMaterial();
-    public abstract void buildShieldGenerator();
+    public  void buildMaterial(Material material){
+        frame.setMaterial(material);
+    }
+    public  void buildShieldGenerator(ShieldGenerator shield){
+        frame.setShieldGenerator(shield);
 
-    public void buildHead(HeadBuilder headBuilder){
-        this.frame.setHead(headBuilder.getHead());
     }
 
-    public void buildArm(ArmBuilder armBuilder){
+    public FrameBuilder buildHead(HeadBuilder headBuilder){
+        this.frame.setHead(headBuilder.getHead());
+        return this;
+    }
+
+    public FrameBuilder buildArm(ArmBuilder armBuilder){
 
         this.frame.setLeftArm(armBuilder.getArm());
         this.frame.setRightArm(armBuilder.getArm());
-
+        return this;
     }
 
-    public void buildLeg(LegBuilder legBuilder){
+    public FrameBuilder buildLeg(LegBuilder legBuilder){
 
         this.frame.setLeftLeg(legBuilder.getLeg());
         this.frame.setRightLeg(legBuilder.getLeg());
+        return this;
 
 
     }

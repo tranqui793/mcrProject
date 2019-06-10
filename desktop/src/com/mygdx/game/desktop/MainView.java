@@ -30,7 +30,7 @@ public class MainView extends JFrame {
 
     ArmBuilder armBuilder = new ArmBuilder();
     LegBuilder legBuilder = new LegBuilder();
-    FrameBuilder frameBuilder;
+    FrameBuilder frameBuilder = new FrameBuilder();
 
 
     public MainView() {
@@ -58,19 +58,9 @@ public class MainView extends JFrame {
                 Material selected = (Material) materialBox.getSelectedItem();
                 System.out.println("Selected Item  = " + selected);
 
-                switch (selected){
+               frameBuilder.buildMaterial(selected);
 
-                    case WOOD:
-                        frameBuilder = new WoodFrameBuilder();
-                        break;
-                    case CARBON:
-                        frameBuilder = new CarbonFrameBuilder();
-                        break;
 
-                    case TITANIUM:
-                        frameBuilder = new TitaniumFrameBuilder();
-                        break;
-                }
 
             }
         });
@@ -110,8 +100,23 @@ public class MainView extends JFrame {
             }
         });
 
-        JComboBox shieldBox = new JComboBox(ShieldGenerator.values());
+        final JComboBox shieldBox = new JComboBox(ShieldGenerator.values());
         shieldBox.setPrototypeDisplayValue("LX1(9999999999999)");
+        shieldBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+
+
+
+                // Print the selected items and the action command.
+                ShieldGenerator selected = (ShieldGenerator) shieldBox.getSelectedItem();
+                System.out.println("Selected Item  = " + selected);
+
+                frameBuilder.buildShieldGenerator(selected);
+
+
+
+            }
+        });
 
 
 
@@ -168,12 +173,16 @@ public class MainView extends JFrame {
         buttonBuild.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                frameBuilder.buildMaterial();
-                frameBuilder.buildShieldGenerator();
-                frameBuilder.buildArm(armBuilder);
-                frameBuilder.buildLeg(legBuilder);
-                frameBuilder.buildHead(headBuilder);
-                Frame frame = frameBuilder.getFrame();
+
+
+
+
+
+
+                Frame frame = frameBuilder.buildArm(armBuilder)
+                .buildLeg(legBuilder)
+                .buildHead(headBuilder).getFrame();
+
 
                 System.out.println(frame);
 
