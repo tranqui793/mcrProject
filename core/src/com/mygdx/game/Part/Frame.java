@@ -41,6 +41,26 @@ public class Frame extends Part {
             power += this.shieldGenerator.getEnergyCost();
         }
         this.shieldGenerator = shieldGenerator;
-        this.power -= shieldGenerator.getEnergyCost()
+        this.power -= shieldGenerator.getEnergyCost();
+    }
+
+    public void setHead(Head head) {
+        this.head = head;
+    }
+
+    public void setLeftLeg(Leg leftLeg) {
+        this.leftLeg = leftLeg;
+    }
+
+    public void setRightLeg(Leg rightLeg) {
+        this.rightLeg = rightLeg;
+    }
+
+    public void setLeftArm(Arm leftArm) {
+        this.leftArm = leftArm;
+    }
+
+    public void setRightArm(Arm rightArm) {
+        this.rightArm = rightArm;
     }
 }
