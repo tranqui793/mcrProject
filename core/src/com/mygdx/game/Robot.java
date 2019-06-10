@@ -1,4 +1,6 @@
-import Part.Part;
+package com.mygdx.game;
+
+import com.mygdx.game.Part.Part;
 
 public abstract class Robot {
 
