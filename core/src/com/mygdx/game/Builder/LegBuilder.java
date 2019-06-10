@@ -5,7 +5,7 @@ import com.mygdx.game.Part.SubPart.Shape;
 
 public class LegBuilder {
 
-    private Leg leg;
+    private Leg leg = new Leg();
 
     public Leg getLeg() {
 

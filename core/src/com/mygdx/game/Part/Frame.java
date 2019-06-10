@@ -63,4 +63,18 @@ public class Frame extends Part {
     public void setRightArm(Arm rightArm) {
         this.rightArm = rightArm;
     }
+
+    @Override
+    public String toString() {
+        return "Frame{" +
+                "head=" + head +
+                ", leftLeg=" + leftLeg +
+                ", rightLeg=" + rightLeg +
+                ", leftArm=" + leftArm +
+                ", rightArm=" + rightArm +
+                ", material=" + material +
+                ", power=" + power +
+                ", shieldGenerator=" + shieldGenerator +
+                '}';
+    }
 }

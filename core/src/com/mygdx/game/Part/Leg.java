@@ -13,4 +13,12 @@ public class Leg extends Part {
     public void setShape(Shape shape) {
         this.shape = shape;
     }
+
+    @Override
+    public String toString() {
+        return "Leg{" +
+                "shape=" + shape +
+                '}';
+    }
 }
+

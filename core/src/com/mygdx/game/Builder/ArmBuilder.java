@@ -5,7 +5,7 @@ import com.mygdx.game.Part.SubPart.Weapon;
 import com.mygdx.game.Part.SubPart.Weight;
 
 public class ArmBuilder {
-    private Arm arm;
+    private Arm arm = new Arm();
 
     public void buildNewArm(){
         arm = new Arm();

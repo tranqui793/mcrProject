@@ -14,4 +14,10 @@ public class Head extends Part {
         this.sensor = sensor;
     }
 
+    @Override
+    public String toString() {
+        return "Head{" +
+                "sensor=" + sensor +
+                '}';
+    }
 }

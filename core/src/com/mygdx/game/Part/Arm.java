@@ -23,4 +23,12 @@ public class Arm extends Part {
     public void setWeight(Weight weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "Arm{" +
+                "weapon=" + weapon +
+                ", weight=" + weight +
+                '}';
+    }
 }
