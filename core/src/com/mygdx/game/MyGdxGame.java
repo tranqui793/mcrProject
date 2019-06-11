@@ -73,16 +73,16 @@ public class MyGdxGame extends Game {
         leftArm = new Arm();
         rightArm = new Arm();
 
-        leftArm.setSprite(new Sprite(new Texture(Gdx.files.internal("arm.png"))));
-        rightArm.setSprite(new Sprite(new Texture(Gdx.files.internal("arm.png"))));
-        h.setSprite(new Sprite(new Texture(Gdx.files.internal("head.png"))));
-        f.setSprite(new Sprite(new Texture(Gdx.files.internal("frame.png"))));
+        leftArm.setSprite(new Sprite(new Texture(Gdx.files.internal("arm1.png"))));
+        rightArm.setSprite(new Sprite(new Texture(Gdx.files.internal("arm1.png"))));
+        h.setSprite(new Sprite(new Texture(Gdx.files.internal("head1.png"))));
+        f.setSprite(new Sprite(new Texture(Gdx.files.internal("frame1.png"))));
         r.setFrame(f);
-        f.setHead(h);
-        f.setLeftArm(leftArm);
-        f.setLeg(l);
-        f.setRightArm(rightArm);
-
+        r.setHead(h);
+        r.setLeftArm(leftArm);
+        r.setLeg(l);
+        r.setRightArm(rightArm);
+        r.setLeftArm(leftArm);
 
 
         //stage.addActor(r);

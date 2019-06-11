@@ -16,7 +16,7 @@ public class ArmPicker extends PartPicker {
     public void update() {
 
             currentPart=availableParts.get(currentIndex);
-            target.setArm((Arm) currentPart);
+            target.setRightArm((Arm) currentPart);
             image.setDrawable(new SpriteDrawable(currentPart.getSprite()));
 
     }

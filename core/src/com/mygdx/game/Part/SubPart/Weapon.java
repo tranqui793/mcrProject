@@ -1,13 +1,16 @@
 package com.mygdx.game.Part.SubPart;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Part.Part;
+import com.mygdx.game.myDrawable;
 
 import java.sql.Driver;
 
-public enum Weapon  {
+public enum Weapon implements myDrawable {
     KINETIC(1, 1, 80, 2, 6, 10),
     MISSILE(1.2, 0.8, 60, 30, 0.5, 10),
     LASER(0.5, 1.5, 100, 10, 1, 10);
+    private Sprite sprite;
 
     private double armorPen;
     private double shieldPen;
@@ -47,5 +50,15 @@ public enum Weapon  {
         this.damage = damage;
         this.attackSpeed = as;
         this.cost = cost;
+    }
+
+    @Override
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return new Sprite(sprite);
     }
 }

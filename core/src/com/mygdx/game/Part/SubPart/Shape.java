@@ -1,7 +1,12 @@
 package com.mygdx.game.Part.SubPart;
 
-public enum Shape {
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.mygdx.game.myDrawable;
+
+public enum Shape implements myDrawable {
     HEAVY(0, 50), MEDIUM(10, 25), LIGHT(20, 0);
+
+    private Sprite sprite;
 
     private int dodge;
     private int armor;
@@ -22,5 +27,15 @@ public enum Shape {
     Shape(int d, int a){
         dodge = d;
         armor = a;
+    }
+
+    @Override
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return new Sprite(sprite);
     }
 }

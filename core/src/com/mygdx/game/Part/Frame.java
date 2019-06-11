@@ -57,6 +57,21 @@ public class Frame extends Part {
         this.head = head;
     }
 
+    public Vector2 getAnchorHead() {
+        return anchorHead;
+    }
+
+    public Vector2 getAnchorLeg() {
+        return anchorLeg;
+    }
+
+    public Vector2 getAnchorLeftArm() {
+        return anchorLeftArm;
+    }
+
+    public Vector2 getAnchorRightArm() {
+        return anchorRightArm;
+    }
 
     public Material getMaterial() {
         return material;
@@ -99,14 +114,8 @@ public class Frame extends Part {
 
     @Override
     public void draw(Batch batch, float x, float y) {
-        float frameY = y + heightOffset();
-        float frameX = x + widthOffset();
-        leftArm.draw(batch, (int) (frameX + anchorLeftArm.x * sprite.getWidth()), (int) (frameY + anchorLeftArm.y * sprite.getHeight()));
-        leg.draw(batch, (int) (frameX + anchorLeg.x * sprite.getWidth()), (int) (frameY + anchorLeg.y * sprite.getHeight()));
-        head.draw(batch, (int) (frameX + anchorHead.x * sprite.getWidth()), (int) (frameY + anchorHead.y * sprite.getHeight()));
-        sprite.setColor(Color.CHARTREUSE);
-        sprite.setPosition(frameX, frameY);
+
+        sprite.setPosition(x, y);
         sprite.draw(batch);
-        rightArm.draw(batch, (int) (frameX + anchorRightArm.x * sprite.getWidth()), (int) (frameY + anchorRightArm.y * sprite.getHeight()));
     }
 }

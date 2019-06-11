@@ -1,13 +1,12 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.Part.Frame;
 import com.mygdx.game.Part.Leg;
 import com.mygdx.game.Part.Part;
-
-import javax.swing.*;
 
 public class Robot extends Actor {
 
@@ -18,43 +17,72 @@ public class Robot extends Actor {
     private int defense;
     private int energy;
 
-    private Part arm;
-    private Part frame;
-    private Part Head;
+    private Part leftArm;
+    private Part rightArm;
+    private Frame frame;
+    private Part head;
     private Part leg;
 
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        frame.draw(batch, getX(),getY());
+        float frameY = getY()+ frame.heightOffset();
+        float frameX = getX()+ frame.widthOffset();
+
+        leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
+        leg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
+        head.draw(batch, (int) (frameX + frame.getAnchorHead().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorHead().y * frame.getSprite().getHeight()));
+
+        frame.draw(batch,frameX,frameY);
+
+        rightArm.draw(batch, (int) (frameX + frame.getAnchorRightArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorRightArm().y * frame.getSprite().getHeight()));
     }
 
     public void draw(SpriteBatch batch, int x, int y){
 
-        frame.draw(batch,x,y);
-    }
-    public Part getArm() {
-        return arm;
+        float frameX = x+ frame.widthOffset();
+        float frameY = y+ frame.heightOffset();
+
+        leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
+        leg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
+        head.draw(batch, (int) (frameX + frame.getAnchorHead().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorHead().y * frame.getSprite().getHeight()));
+
+        frame.draw(batch,frameX,frameY);
+
+        rightArm.draw(batch, (int) (frameX + frame.getAnchorRightArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorRightArm().y * frame.getSprite().getHeight()));
+
     }
 
-    public void setArm(Part arm) {
-        this.arm = arm;
+    public Part getLeftArm() {
+        return leftArm;
+    }
+
+    public void setLeftArm(Part leftArm) {
+        this.leftArm = leftArm;
+    }
+
+    public Part getRightArm() {
+        return rightArm;
+    }
+
+    public void setRightArm(Part arm) {
+        this.rightArm = arm;
     }
 
     public Part getFrame() {
         return frame;
     }
 
-    public void setFrame(Part frame) {
+    public void setFrame(Frame frame) {
         this.frame = frame;
     }
 
     public Part getHead() {
-        return Head;
+        return head;
     }
 
     public void setHead(Part head) {
-        Head = head;
+        this.head = head;
     }
 
     public Part getLeg() {
