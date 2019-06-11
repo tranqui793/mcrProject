@@ -3,96 +3,122 @@ package com.mygdx.game;
 import com.mygdx.game.Part.Part;
 
 public class Robot {
+    private int energy = 200;
 
-    private int armor;
-    private int dodge;
-    private int shield;
-    private int attack;
-    private int defense;
-    private int energy;
-
-    private Part arm;
+    private Part leftArm;
+    private Part rightArm;
     private Part frame;
     private Part head;
-    private Part leg;
-
-    public Part getArm() {
-        return arm;
-    }
-
-    public void setArm(Part arm) {
-        this.arm = arm;
-    }
-
-    public Part getFrame() {
-        return frame;
-    }
-
-    public void setFrame(Part frame) {
-        this.frame = frame;
-    }
-
-    public Part getHead() {
-        return head;
-    }
-
-    public void setHead(Part head) {
-        this.head = head;
-    }
-
-    public Part getLeg() {
-        return leg;
-    }
-
-    public void setLeg(Part leg) {
-        this.leg = leg;
-    }
+    private Part leftLeg;
+    private Part rightLeg;
 
     public int getArmor() {
-        return armor;
-    }
-
-    public void setArmor(int armor) {
-        this.armor = armor;
+        return frame.getArmor() + rightLeg.getArmor() + leftLeg.getArmor();
     }
 
     public int getDodge() {
-        return dodge;
+        return head.getDodge() + leftLeg.getDodge() + rightLeg.getDodge();
     }
 
-    public void setDodge(int dodge) {
-        this.dodge = dodge;
+    public int getAccuracyLeft() {
+        return head.getAccuracy() + leftArm.getAccuracy();
     }
 
-    public int getShield() {
-        return shield;
+    public int getAccuracyRight() {
+        return head.getAccuracy() + rightArm.getAccuracy();
     }
 
-    public void setShield(int shield) {
-        this.shield = shield;
+    public int getShieldAmount() {
+        return frame.getShieldAmount();
     }
 
-    public int getAttack() {
-        return attack;
+    public double getArmorPenLeft() {
+        return leftArm.getArmorPen();
     }
 
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public double getShieldPenLeft() {
+        return leftArm.getShieldPen();
     }
 
-    public int getDefense() {
-        return defense;
+    public int getDamageLeft() {
+        return (int)(leftArm.getDamage() * leftArm.getDamageMult());
     }
 
-    public void setDefense(int defense) {
-        this.defense = defense;
+    public double getAttackSpeedLeft() {
+        return (int)(leftArm.getAttackSpeed() * leftArm.getAttackSpeedMult());
+    }
+
+    public double getArmorPenRight() {
+        return rightArm.getArmorPen();
+    }
+
+    public double getShieldPenRight() {
+        return rightArm.getShieldPen();
+    }
+
+    public int getDamageRight() {
+        return (int)(rightArm.getDamage() * rightArm.getDamageMult());
+    }
+
+    public double getAttackSpeedRight() {
+        return (int)(rightArm.getAttackSpeed() * rightArm.getAttackSpeedMult());
+    }
+
+    public void setFrame(Part frame) {
+        if(this.frame != null){
+            energy += this.frame.getEnergyCost() - frame.getEnergyCost();
+        } else {
+            energy -= frame.getEnergyCost();
+        }
+        this.frame = frame;
+    }
+
+    public void setHead(Part head) {
+        if(this.head != null){
+            energy += this.head.getEnergyCost() - head.getEnergyCost();
+        } else {
+            energy -= head.getEnergyCost();
+        }
+        this.head = head;
+    }
+
+    public void setLeftLeg(Part leg) {
+        if(this.leftLeg != null){
+            energy += this.leftLeg.getEnergyCost() - leg.getEnergyCost();
+        } else {
+            energy -= leg.getEnergyCost();
+        }
+        this.leftLeg = leg;
+    }
+
+    public void setRightLeg(Part leg) {
+        if(this.rightLeg != null){
+            energy += this.rightLeg.getEnergyCost() - leg.getEnergyCost();
+        } else {
+            energy -= leg.getEnergyCost();
+        }
+        this.rightLeg = leg;
+    }
+
+    public void setLeftArm(Part leftArm) {
+        if(this.leftArm != null){
+            energy += this.leftArm.getEnergyCost() - leftArm.getEnergyCost();
+        } else {
+            energy -= leftArm.getEnergyCost();
+        }
+        this.leftArm = leftArm;
+    }
+
+    public void setRightArm(Part rightArm) {
+        if(this.rightArm != null){
+            energy += this.rightArm.getEnergyCost() - rightArm.getEnergyCost();
+        } else {
+            energy -= rightArm.getEnergyCost();
+        }
+        this.rightArm = rightArm;
     }
 
     public int getEnergy() {
         return energy;
-    }
-
-    public void setEnergy(int energy) {
-        this.energy = energy;
     }
 }
