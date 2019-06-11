@@ -15,7 +15,8 @@ public class LegPicker extends PartPicker {
     public void update() {
 
             currentPart=availableParts.get(currentIndex);
-            target.setLeg((Leg) currentPart);
+            target.setRightLeg((Leg) currentPart);
+            target.setLeftLeg((Leg) currentPart);
             image.setDrawable(new SpriteDrawable(currentPart.getSprite()));
 
     }

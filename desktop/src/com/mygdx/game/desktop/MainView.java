@@ -30,7 +30,7 @@ public class MainView extends JFrame {
 
     ArmBuilder armBuilder = new ArmBuilder();
     LegBuilder legBuilder = new LegBuilder();
-    FrameBuilder frameBuilder = new FrameBuilder();
+    FrameBuilder frameBuilder = new CarbonFrameBuilder();
 
 
     public MainView() {
@@ -179,13 +179,13 @@ public class MainView extends JFrame {
 
 
 
-                Frame frame = frameBuilder.buildArm(armBuilder)
+              /*  Frame frame = frameBuilder.buildArm(armBuilder)
                 .buildLeg(legBuilder)
                 .buildHead(headBuilder).getFrame();
 
 
                 System.out.println(frame);
-
+*/
 
 
 

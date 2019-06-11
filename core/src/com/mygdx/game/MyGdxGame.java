@@ -80,7 +80,8 @@ public class MyGdxGame extends Game {
         r.setFrame(f);
         r.setHead(h);
         r.setLeftArm(leftArm);
-        r.setLeg(l);
+        r.setLeftLeg(l);
+        r.setRightLeg(l);
         r.setRightArm(rightArm);
         r.setLeftArm(leftArm);
 

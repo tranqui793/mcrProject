@@ -14,7 +14,7 @@ public class Robot extends Actor{
 
     private Part leftArm;
     private Part rightArm;
-    private Part frame;
+    private Frame frame;
 
     private Part head;
     private Part leftLeg;
@@ -28,7 +28,7 @@ public class Robot extends Actor{
         float frameX = getX()+ widthOffset();
 
         leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
-        leg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
+        rightLeg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
         head.draw(batch, (int) (frameX + frame.getAnchorHead().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorHead().y * frame.getSprite().getHeight()));
 
         frame.draw(batch,frameX,frameY);
@@ -45,8 +45,8 @@ public class Robot extends Actor{
 
 
     public int heightOffset() {
-        if (leg != null) {
-            return (int) (leg.getSprite().getHeight() * ((Leg)leg).getHooktoFrame().y - frame.getSprite().getHeight() * frame.getAnchorLeg().y);
+        if (leftLeg != null) {
+            return (int) (leftLeg.getSprite().getHeight() * ((Leg)leftLeg).getHooktoFrame().y - frame.getSprite().getHeight() * frame.getAnchorLeg().y);
         }else {
             return 0;
         }
@@ -57,7 +57,7 @@ public class Robot extends Actor{
         float frameY = y+ heightOffset();
 
         leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
-        leg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
+        leftLeg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
         head.draw(batch, (int) (frameX + frame.getAnchorHead().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorHead().y * frame.getSprite().getHeight()));
 
 
@@ -67,21 +67,6 @@ public class Robot extends Actor{
 
     }
 
-    public Part getLeftArm() {
-        return leftArm;
-    }
-
-    public void setLeftArm(Part leftArm) {
-        this.leftArm = leftArm;
-    }
-
-    public Part getRightArm() {
-        return rightArm;
-    }
-
-    public void setRightArm(Part arm) {
-        this.rightArm = arm;
-    }
 
     public int getDodge() {
         return head.getDodge() + leftLeg.getDodge() + rightLeg.getDodge();
@@ -140,7 +125,7 @@ public class Robot extends Actor{
         } else {
             energy -= frame.getEnergyCost();
         }
-        this.frame = frame;
+        this.frame = (Frame) frame;
     }
 
     public void setHead(Part head) {
