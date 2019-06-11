@@ -11,7 +11,6 @@ import com.mygdx.game.myDrawable;
 public class Frame extends Part {
 
 
-
     private Vector2 anchorHead = new Vector2(0.5f, 0.9f);
    
 
@@ -21,11 +20,7 @@ public class Frame extends Part {
     private Vector2 anchorLeftArm = new Vector2(0.4f, 0.67f);
     private Vector2 anchorRightArm = new Vector2(0.6f, 0.67f);
 
-
-
-
     private Material material;
-    private int power = 200;
     private ShieldGenerator shieldGenerator;
 
     private myDrawable test;
@@ -47,23 +42,21 @@ public class Frame extends Part {
         return anchorRightArm;
     }
 
+
     public Material getMaterial() {
         return material;
     }
 
     public void setMaterial(Material material) {
         if(this.material != null){
-            power += this.material.getEnergyCost();
+            setEnergyCost(getEnergyCost() + material.getEnergyCost() - this.material.getEnergyCost());
+        } else {
+            setEnergyCost(getEnergyCost() + material.getEnergyCost());
         }
+        setArmor(material.getArmor());
         this.material = material;
-        this.power -= material.getEnergyCost();
-    }
-
-    public int getPower() {
-        return power;
 
     }
-
 
     public ShieldGenerator getShieldGenerator() {
         return shieldGenerator;
@@ -76,19 +69,25 @@ public class Frame extends Part {
 
     public void setShieldGenerator(ShieldGenerator shieldGenerator) {
         if(this.shieldGenerator != null){
-            power += this.shieldGenerator.getEnergyCost();
+            setEnergyCost(getEnergyCost() + shieldGenerator.getEnergyCost() - this.shieldGenerator.getEnergyCost());
+        } else {
+            setEnergyCost(getEnergyCost() + shieldGenerator.getEnergyCost());
         }
+        setShieldAmount(getShieldAmount());
         this.shieldGenerator = shieldGenerator;
-        this.power -= shieldGenerator.getEnergyCost();
+
     }
 
     @Override
     public String toString() {
         return "Frame{" +
 
+                "material=" + material +
+
                 ", shieldGenerator=" + shieldGenerator +
                 '}';
     }
+
 
 
     @Override
@@ -97,4 +96,5 @@ public class Frame extends Part {
         sprite.setPosition(x, y);
         sprite.draw(batch);
     }
+
 }

@@ -21,6 +21,15 @@ public  abstract class Part  implements myDrawable {
     private double shieldPen = 0;
     private int damage = 0;
     private double attackSpeed = 0;
+    private int shieldAmount = 0;
+
+    public int getShieldAmount() {
+        return shieldAmount;
+    }
+
+    public void setShieldAmount(int shieldAmount) {
+        this.shieldAmount = shieldAmount;
+    }
 
 
     public abstract void draw(Batch batch, float x, float y);
