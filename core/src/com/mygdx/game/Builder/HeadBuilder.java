@@ -5,7 +5,7 @@ import com.mygdx.game.Part.SubPart.Sensor;
 
 public class HeadBuilder{
 
-    private Head head;
+    private Head head = new Head();
 
     public Head getHead()
     {

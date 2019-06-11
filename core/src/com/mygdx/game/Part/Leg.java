@@ -12,5 +12,16 @@ public class Leg extends Part {
 
     public void setShape(Shape shape) {
         this.shape = shape;
+        setArmor(shape.getArmor());
+        setDodge(shape.getDodge());
+        setEnergyCost(shape.getCost());
+    }
+
+    @Override
+    public String toString() {
+        return "Leg{" +
+                "shape=" + shape +
+                '}';
     }
 }
+
