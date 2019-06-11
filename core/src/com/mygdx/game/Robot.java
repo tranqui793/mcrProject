@@ -2,9 +2,15 @@ package com.mygdx.game;
 
 import com.mygdx.game.Part.Part;
 
+import java.util.Random;
+
 public class Robot {
-    private long timeOfLastAttack = System.currentTimeMillis();
+    private long timeOfLastAttack = 0;
     private int energy = 200;
+    private boolean dead = false;
+
+    private int shieldAmount = getShieldAmount();
+    private int armorAmount = getArmor();
 
     private Part leftArm;
     private Part rightArm;
@@ -13,12 +19,54 @@ public class Robot {
     private Part leftLeg;
     private Part rightLeg;
 
-    public void shootLeft(Robot target){
-
+    public String shootLeft(Robot target){
+        int chanceToMiss = target.getDodge() - getAccuracyLeft();
+        Random r = new Random();
+        if(r.nextInt(99) >= chanceToMiss) {
+            if (shieldAmount > 0) {
+                int damage = (int)(getShieldPenLeft() * getDamageLeft());
+                shieldAmount -= damage;
+                return " shield with his left arm for " + damage + ".";
+            } else if(armorAmount > 0) {
+                int damage = (int)(getArmorPenLeft() * getDamageLeft());
+                armorAmount -= damage;
+                if(armorAmount <= 0){
+                    setDead();
+                    return " with his left arm and killed his opponent.";
+                }
+                return " armor with his left arm for " + damage + ".";
+            }
+        }
+        return " and miss.";
     }
 
-    public void shootRight(Robot target){
+    public String shootRight(Robot target){
+        int chanceToMiss = target.getDodge() - getAccuracyRight();
+        Random r = new Random();
+        if(r.nextInt(99) >= chanceToMiss) {
+            if (shieldAmount > 0) {
+                int damage = (int)(getShieldPenRight() * getDamageRight());
+                shieldAmount -= damage;
+                return " shield with his right arm for " + damage + ".";
+            } else if(armorAmount > 0) {
+                int damage = (int)(getArmorPenRight() * getDamageRight());
+                armorAmount -= damage;
+                if(armorAmount <= 0){
+                    setDead();
+                    return " with his right arm and killed his opponent.";
+                }
+                return " armor with his right arm for " + damage + ".";
+            }
+        }
+        return " and miss.";
+    }
 
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead() {
+        this.dead = true;
     }
 
     public long getTimeOfLastAttack() {
