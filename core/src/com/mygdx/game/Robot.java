@@ -10,6 +10,9 @@ import com.mygdx.game.Part.Part;
 
 
 public class Robot extends Actor{
+
+    private long timeOfLastAttack = System.currentTimeMillis();
+
     private int energy = 200;
 
     private Part leftArm;
@@ -21,24 +24,22 @@ public class Robot extends Actor{
     private Part rightLeg;
 
 
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        float frameY = getY()+ heightOffset();
-        float frameX = getX()+ widthOffset();
-
-        leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
-        rightLeg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
-        head.draw(batch, (int) (frameX + frame.getAnchorHead().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorHead().y * frame.getSprite().getHeight()));
-
-        frame.draw(batch,frameX,frameY);
-
-        rightArm.draw(batch, (int) (frameX + frame.getAnchorRightArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorRightArm().y * frame.getSprite().getHeight()));
-    }
-    public int widthOffset() {
-        return (int) (-frame.getSprite().getHeight() / 2);
+    public void shootLeft(Robot target){
 
     }
+
+    public void shootRight(Robot target){
+
+    }
+
+    public long getTimeOfLastAttack() {
+        return timeOfLastAttack;
+    }
+
+    public void setTimeOfLastAttack(long timeOfLastAttack) {
+        this.timeOfLastAttack = timeOfLastAttack;
+    }
+
     public int getArmor() {
         return frame.getArmor() + rightLeg.getArmor() + leftLeg.getArmor();
     }
@@ -53,7 +54,7 @@ public class Robot extends Actor{
     }
     public void draw(SpriteBatch batch, int x, int y){
 
-        float frameX = x+ widthOffset();
+        float frameX = x;
         float frameY = y+ heightOffset();
 
         leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));

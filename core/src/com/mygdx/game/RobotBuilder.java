@@ -1,32 +1,33 @@
 package com.mygdx.game;
 
-import com.mygdx.game.Builder.ArmBuilder;
-import com.mygdx.game.Builder.Frame.FrameBuilder;
-import com.mygdx.game.Builder.HeadBuilder;
-import com.mygdx.game.Builder.LegBuilder;
+
+import com.mygdx.game.Part.Arm;
+import com.mygdx.game.Part.Frame;
+import com.mygdx.game.Part.Head;
+import com.mygdx.game.Part.Leg;
 
 public class RobotBuilder {
     private Robot robot = new Robot();
 
-    public void buildLeftArm(ArmBuilder ab){
-        robot.setLeftArm(ab.getArm());
+    public void buildLeftArm(Arm a){
+        robot.setLeftArm(a);
     }
 
-    public void buildRightArm(ArmBuilder ab){
-        robot.setRightArm(ab.getArm());
+    public void buildRightArm(Arm a){
+        robot.setRightArm(a);
     }
 
-    public void buildLegs(LegBuilder lb){
-        robot.setLeftLeg(lb.getLeg());
-        robot.setRightLeg(lb.getLeg());
+    public void buildLegs(Leg l){
+        robot.setLeftLeg(l);
+        robot.setRightLeg(l);
     }
 
-    public void buildHead(HeadBuilder hb){
-        robot.setHead(hb.getHead());
+    public void buildHead(Head h){
+        robot.setHead(h);
     }
 
-    public void buildFrame(FrameBuilder fb){
-        robot.setFrame(fb.getFrame());
+    public void buildFrame(Frame f){
+        robot.setFrame(f);
     }
 
     public Robot build(){
