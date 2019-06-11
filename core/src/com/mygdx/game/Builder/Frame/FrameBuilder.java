@@ -14,13 +14,14 @@ public abstract class FrameBuilder {
         this.frame = new Frame();
     }
 
-    public void buildMaterial(Material material){
-        frame.setMaterial(material);
-    }
+    public abstract void buildMaterial();
 
 
-    public void buildShieldGenerator(ShieldGenerator shield){
-        frame.setShieldGenerator(shield);
+    public FrameBuilder build(){
+        buildMaterial();
+        buildShieldGenerator();
+        return this;
     }
+    public abstract void buildShieldGenerator();
 
 }

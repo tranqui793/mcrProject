@@ -19,6 +19,7 @@ import com.mygdx.game.Part.Leg;
 import com.mygdx.game.Part.Part;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class PartPicker extends Table {
 
@@ -27,10 +28,10 @@ public abstract class PartPicker extends Table {
     Image image;
     myDrawable currentPart;
     int currentIndex;
-    ArrayList<myDrawable> availableParts;
-    Robot target;
+    List<myDrawable> availableParts;
+    RobotBuilder target;
 
-    public PartPicker(float x, float y, int height, int width,ArrayList<myDrawable> parts,Robot target) {
+    public PartPicker(float x, float y, int height, int width,List<myDrawable> parts,RobotBuilder target) {
         this.target= target;
         availableParts=parts;
         setPosition(x, y);
@@ -62,6 +63,7 @@ public abstract class PartPicker extends Table {
         add(leftArrow).width(35).pad(10);
         add(image).expand();
         add(rightArrow).width(35).pad(10);
+
     }
 
     public void setCurrentPart(Part currentPart) {

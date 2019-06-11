@@ -1,5 +1,7 @@
 package com.mygdx.game.Part.SubPart;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Part.Part;
@@ -8,9 +10,9 @@ import com.mygdx.game.myDrawable;
 import java.sql.Driver;
 
 public enum Weapon implements myDrawable {
-    KINETIC(1, 1, 80, 2, 6, 10),
-    MISSILE(1.2, 0.8, 60, 30, 0.5, 10),
-    LASER(0.5, 1.5, 100, 10, 1, 10);
+    KINETIC(1, 1, 80, 2, 6, 10,"head1.png"),
+    MISSILE(1.2, 0.8, 60, 30, 0.5, 10,"head2.png"),
+    LASER(0.5, 1.5, 100, 10, 1, 10,"head3.png");
     private Sprite sprite;
 
     private double armorPen;
@@ -44,13 +46,14 @@ public enum Weapon implements myDrawable {
         return attackSpeed;
     }
 
-    Weapon(double ap, double sp, int accuracy, int damage, double as, int cost){
+    Weapon(double ap, double sp, int accuracy, int damage, double as, int cost,String path){
         this.armorPen = ap;
         this.shieldPen = sp;
         this.accuracy = accuracy;
         this.damage = damage;
         this.attackSpeed = as;
         this.cost = cost;
+        sprite=new Sprite(new Texture(Gdx.files.internal(path)));
     }
 
     @Override

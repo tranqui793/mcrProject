@@ -3,6 +3,7 @@ package com.mygdx.game.Part;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Part.SubPart.Material;
 import com.mygdx.game.Part.SubPart.ShieldGenerator;
@@ -90,11 +91,15 @@ public class Frame extends Part {
 
 
 
+    public Sprite getSprite() {
+        return material.getSprite();
+    }
     @Override
     public void draw(Batch batch, float x, float y) {
 
-        sprite.setPosition(x, y);
-        sprite.draw(batch);
+
+        material.draw(batch,x,y);
+
     }
 
 }

@@ -12,9 +12,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.mygdx.game.Builder.Frame.*;
 import com.mygdx.game.Part.SubPart.*;
 import com.mygdx.game.Part.*;
 
@@ -33,21 +37,27 @@ public class MyGdxGame implements ApplicationListener {
     private TextureRegion myTextureRegion;
     private TextureRegionDrawable myTexRegionDrawable;
     private ImageButton button;
-    private PartPicker partPicker;
-	
+    private RightArmPicker rightArmPicker;
+    private LeftArmPicker leftArmPicker;
+    private LegPicker legPicker;
+    private HeadPicker headPicker;
+    private FramePicker framePicker;
 	private Robot player;
 	private Robot enemy;
 
 
 	private RobotBuilder rb;
 
+	private boolean inFight=false;
+
 	@Override
 	public void create() {
 		  batch = new SpriteBatch();
         batch2 = new SpriteBatch();
 
-
-
+        Frame f1= new CarbonFrameBuilder().build().getFrame();
+        Frame f2 = new TitaniumFrameBuilder().build().getFrame();
+        Frame f3 = new WoodFrameBuilder().build().getFrame();
 
         stage=new Stage();
         Gdx.input.setInputProcessor(stage); //Start taking input from the ui
@@ -58,51 +68,49 @@ public class MyGdxGame implements ApplicationListener {
         f = new Frame();
         Head h = new Head();
 
-        Leg l= new Leg();
-        l.setSprite(new Sprite(new Texture(Gdx.files.internal("leg1.png"))));
-        l.setShape(Shape.HEAVY);
-        Leg l1= new Leg();
-        l1.setSprite(new Sprite(new Texture(Gdx.files.internal("leg1.png"))));
-        l1.setShape(Shape.HEAVY);
-        Leg l2= new Leg();
-        l2.setSprite(new Sprite(new Texture(Gdx.files.internal("leg2.png"))));
-        l2.setShape(Shape.MEDIUM);
-        Leg l3=new Leg();
-        l3.setSprite(new Sprite(new Texture(Gdx.files.internal("leg3.png"))));
-        l3.setShape(Shape.LIGHT);
-
-        ArrayList<myDrawable> legTypes= new ArrayList<myDrawable>();
-        legTypes.add(Shape.HEAVY);
-        legTypes.add(Shape.MEDIUM);
-        legTypes.add(Shape.LIGHT);
 
 
         rb= new RobotBuilder();
-        partPicker=new LegPicker(515,0,256,256,legTypes,rb);
 
-        Arm leftArm, rightArm;
-        leftArm = new Arm();
-        rightArm = new Arm();
-
-        leftArm.setSprite(new Sprite(new Texture(Gdx.files.internal("arm1.png"))));
-        rightArm.setSprite(new Sprite(new Texture(Gdx.files.internal("arm1.png"))));
-        h.setSprite(new Sprite(new Texture(Gdx.files.internal("head1.png"))));
-        f.setSprite(new Sprite(new Texture(Gdx.files.internal("frame1.png"))));
-        player.setFrame(f);
-        player.setHead(h);
-        player.setLeftArm(leftArm);
-        player.setLeftLeg(l);
-        player.setRightLeg(l);
-        player.setRightArm(rightArm);
-        player.setLeftArm(leftArm);
+        ArrayList <myDrawable> frames = new ArrayList<myDrawable>();
+        frames.add(f1);
+        frames.add(f2);
+        frames.add(f3);
+        framePicker= new FramePicker(832,400,256,256,frames,rb);
+        headPicker= new HeadPicker(832,696,256,256,rb);
+        rightArmPicker=new RightArmPicker(256,256,512,256,rb);
+        leftArmPicker= new LeftArmPicker(1408,256,512,256,rb);
+        legPicker=new LegPicker(832,128,256,256,rb);
 
 
+        button= new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buildButtonWhite.png")))),
+                new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buildButtonGray.png"))))
+                );
+        button.setSize(512,128);
+        button.setPosition(832-128,950);
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                buildAndFight();
+            }
+        });
         //stage.addActor(r);
-         stage.addActor(partPicker);
-
+        stage.addActor(framePicker);
+        stage.addActor(headPicker);
+        stage.addActor(rightArmPicker);
+         stage.addActor(leftArmPicker);
+        stage.addActor(legPicker);
+        stage.addActor(button);
         player.setPosition(100,0);
 	}
 
+
+	public void buildAndFight(){
+	    player= rb.build();
+	    enemy= rb.build();
+	    inFight=true;
+    }
 	@Override
 	public void dispose() {
 		batch.dispose();
@@ -111,28 +119,33 @@ public class MyGdxGame implements ApplicationListener {
 
 	@Override
 	public void render() {
-		 /* Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+if(inFight) {
 
-        batch.begin();
-        //font.draw(batch, "Mcr Project", 200, 200);
-        player.draw(batch, 0, 0);
-        Matrix4 m= batch.getTransformMatrix();
 
-        m.setToTranslation(128,0,0);
-        //batch.setTransformMatrix(m);
-        batch.end();*/
-       /* batch2.begin();
-        r.draw(batch2,0,0);
+    batch.begin();
+    //font.draw(batch, "Mcr Project", 200, 200);
+    player.draw(batch, 0, 0);
+    Matrix4 m = batch.getTransformMatrix();
 
-        Matrix4 m2= batch2.getTransformMatrix();
-        m2.setToTranslation(1024,0,0);
-        m2.val[0]=-1;
+    m.setToTranslation(128, 256, 0);
+    //batch.setTransformMatrix(m);
+    batch.end();
+    batch2.begin();
+    enemy.draw(batch2, 0, 0);
 
-        batch2.setTransformMatrix(m2);
-        batch2.end();*/
+    Matrix4 m2 = batch2.getTransformMatrix();
+    m2.setToTranslation(1920-128, 256, 0);
+    m2.val[0] = -1;
+
+    batch2.setTransformMatrix(m2);
+    batch2.end();
+}else{
+
         stage.act(Gdx.graphics.getDeltaTime()); //Perform ui logic
-        stage.draw(); 
+        stage.draw();
+}
 	}
 
 	@Override
@@ -146,6 +159,7 @@ public class MyGdxGame implements ApplicationListener {
 	@Override
 	public void resume() {
 	}
+
 
 	private void update(){
 		long currentTime = System.currentTimeMillis();

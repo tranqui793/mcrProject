@@ -31,9 +31,10 @@ public class Head extends Part {
     @Override
     public void draw(Batch batch, float x, float y) {
 
-        sprite.setPosition(x-sprite.getWidth()*hooktoFrame.x,y-sprite.getHeight()*hooktoFrame.y);
-        sprite.setColor(Color.CHARTREUSE);
-        sprite.draw(batch);
+        sensor.draw(batch,x-sensor.getSprite().getWidth()*hooktoFrame.x,y-sensor.getSprite().getHeight()*hooktoFrame.y);
+
+   /*     sprite.setColor(Color.CHARTREUSE);
+        sprite.draw(batch);*/
     }
 
 

@@ -2,6 +2,7 @@ package com.mygdx.game.Part;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import com.mygdx.game.Part.SubPart.Shape;
@@ -36,10 +37,15 @@ public class Leg extends Part{
     @Override
     public void draw(Batch batch, float x, float y) {
 
-            sprite.setPosition(x - sprite.getWidth() * hooktoFrame.x, y - sprite.getHeight() * hooktoFrame.y);
+        //    sprite.setPosition(x - sprite.getWidth() * hooktoFrame.x, y - sprite.getHeight() * hooktoFrame.y);
+        shape.draw(batch, x - shape.getSprite().getWidth() * hooktoFrame.x, y - shape.getSprite().getHeight() * hooktoFrame.y);
 
+      //  sprite.draw(batch);
+    }
 
-        sprite.draw(batch);
+    @Override
+    public Sprite getSprite() {
+        return shape.getSprite();
     }
 
     public Vector2 getHooktoFrame() {

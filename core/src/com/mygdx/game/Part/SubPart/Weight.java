@@ -1,11 +1,13 @@
 package com.mygdx.game.Part.SubPart;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.myDrawable;
 
 public enum Weight implements myDrawable {
-    HEAVY(1.5, 0.5), MEDIUM(1, 1), LIGHT(0.5, 1.5);
+    HEAVY(1.5, 0.5,"arm1.png"), MEDIUM(1, 1,"arm2.png"), LIGHT(0.5, 1.5,"arm3.png");
 
     private Sprite sprite;
 
@@ -25,9 +27,10 @@ public enum Weight implements myDrawable {
         return cost;
     }
 
-    Weight(double dm, double asm){
+    Weight(double dm, double asm,String path){
         damageMult = dm;
         attackSpeedMult = asm;
+        sprite=new Sprite(new Texture(Gdx.files.internal(path)));
     }
 
     @Override
