@@ -11,19 +11,26 @@ import com.mygdx.game.myDrawable;
 public class Frame extends Part {
 
 
+
     private Vector2 anchorHead = new Vector2(0.5f, 0.9f);
-    private Head head;
+   
 
     private Vector2 anchorLeg = new Vector2(0.5f, 0.1f);
-    private Leg leg;
+   
 
     private Vector2 anchorLeftArm = new Vector2(0.4f, 0.67f);
     private Vector2 anchorRightArm = new Vector2(0.6f, 0.67f);
 
-    private Arm leftArm, rightArm;
+
+    private Head head;
+    private Leg leftLeg;
+    private Leg rightLeg;
+    private Arm leftArm;
+    private Arm rightArm;
+
 
     private Material material;
-    private int power;
+    private int power = 200;
     private ShieldGenerator shieldGenerator;
 
     private myDrawable test;
@@ -81,7 +88,11 @@ public class Frame extends Part {
     }
 
     public void setMaterial(Material material) {
+        if(this.material != null){
+            power += this.material.getEnergyCost();
+        }
         this.material = material;
+        this.power -= material.getEnergyCost();
     }
 
     public int getPower() {
@@ -89,9 +100,6 @@ public class Frame extends Part {
 
     }
 
-    public void setPower(int power) {
-        this.power = power;
-    }
 
     public ShieldGenerator getShieldGenerator() {
         return shieldGenerator;
@@ -111,7 +119,45 @@ public class Frame extends Part {
     }
 
     public void setShieldGenerator(ShieldGenerator shieldGenerator) {
+        if(this.shieldGenerator != null){
+            power += this.shieldGenerator.getEnergyCost();
+        }
         this.shieldGenerator = shieldGenerator;
+        this.power -= shieldGenerator.getEnergyCost();
+    }
+
+    public void setHead(Head head) {
+        this.head = head;
+    }
+
+    public void setLeftLeg(Leg leftLeg) {
+        this.leftLeg = leftLeg;
+    }
+
+    public void setRightLeg(Leg rightLeg) {
+        this.rightLeg = rightLeg;
+    }
+
+    public void setLeftArm(Arm leftArm) {
+        this.leftArm = leftArm;
+    }
+
+    public void setRightArm(Arm rightArm) {
+        this.rightArm = rightArm;
+    }
+
+    @Override
+    public String toString() {
+        return "Frame{" +
+                "head=" + head +
+                ", leftLeg=" + leftLeg +
+                ", rightLeg=" + rightLeg +
+                ", leftArm=" + leftArm +
+                ", rightArm=" + rightArm +
+                ", material=" + material +
+                ", power=" + power +
+                ", shieldGenerator=" + shieldGenerator +
+                '}';
     }
 
 

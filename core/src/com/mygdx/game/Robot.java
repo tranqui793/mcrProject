@@ -10,6 +10,7 @@ import com.mygdx.game.Part.Part;
 
 public class Robot extends Actor {
 
+
     private int armor;
     private int dodge;
     private int shield;
@@ -20,6 +21,10 @@ public class Robot extends Actor {
     private Part leftArm;
     private Part rightArm;
     private Frame frame;
+
+    
+    private Part frame;
+
     private Part head;
     private Part leg;
 

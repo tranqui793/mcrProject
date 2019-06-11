@@ -12,7 +12,7 @@ public enum ShieldGenerator  implements myDrawable {
     private int cost;
     private int shieldAmount;
 
-    public int getCost() {
+    public int getEnergyCost() {
         return cost;
     }
 

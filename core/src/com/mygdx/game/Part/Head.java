@@ -21,7 +21,11 @@ public class Head extends Part {
 
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
+        setDodge(sensor.getDodge());
+        setAccuracy(sensor.getAccuracy());
+        setEnergyCost(sensor.getCost());
     }
+
 
 
     @Override
@@ -30,6 +34,14 @@ public class Head extends Part {
         sprite.setPosition(x-sprite.getWidth()*hooktoFrame.x,y-sprite.getHeight()*hooktoFrame.y);
         sprite.setColor(Color.CHARTREUSE);
         sprite.draw(batch);
+    }
+
+
+    @Override
+    public String toString() {
+        return "Head{" +
+                "sensor=" + sensor +
+                '}';
     }
 
 }

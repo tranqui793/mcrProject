@@ -18,6 +18,7 @@ public enum Material implements myDrawable {
         this.armor = armor;
     }
 
+
     @Override
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
@@ -32,5 +33,21 @@ public enum Material implements myDrawable {
     public void draw(Batch batch, float x, float y) {
         sprite.setPosition(x,y);
         sprite.draw(batch);
+
+    public int getEnergyCost() {
+        return cost;
+    }
+
+    public void setEnergyCost(int cost) {
+        this.cost = cost;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
+
+    public void setArmor(int armor) {
+        this.armor = armor;
+
     }
 }
