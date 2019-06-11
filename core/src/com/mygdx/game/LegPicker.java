@@ -7,7 +7,7 @@ import com.mygdx.game.Part.Part;
 import java.util.ArrayList;
 
 public class LegPicker extends PartPicker {
-    public LegPicker(float x, float y, int height, int width, ArrayList<Part> parts,Robot target) {
+    public LegPicker(float x, float y, int height, int width, ArrayList<myDrawable> parts,Robot target) {
         super(x, y, height, width, parts,target);
     }
 

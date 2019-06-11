@@ -25,12 +25,12 @@ public abstract class PartPicker extends Table {
     ImageButton leftArrow;
     ImageButton rightArrow;
     Image image;
-    Part currentPart;
+    myDrawable currentPart;
     int currentIndex;
-    ArrayList<Part> availableParts;
+    ArrayList<myDrawable> availableParts;
     Robot target;
 
-    public PartPicker(float x, float y, int height, int width,ArrayList<Part> parts,Robot target) {
+    public PartPicker(float x, float y, int height, int width,ArrayList<myDrawable> parts,Robot target) {
         this.target= target;
         availableParts=parts;
         setPosition(x, y);

@@ -5,13 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Part.SubPart.Weapon;
 import com.mygdx.game.Part.SubPart.Weight;
-import com.mygdx.game.myDrawable;
+
 
 public class Arm extends Part {
 
    private Vector2 hooktoFrame = new Vector2(0.1f,0.9f);
     private Weapon weapon;
     private Weight weight;
+
 
     public Weapon getWeapon() {
         return weapon;

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Part.SubPart.Material;
 import com.mygdx.game.Part.SubPart.ShieldGenerator;
+import com.mygdx.game.myDrawable;
 
 public class Frame extends Part {
 
@@ -25,7 +26,9 @@ public class Frame extends Part {
     private int power;
     private ShieldGenerator shieldGenerator;
 
+    private myDrawable test;
     public Leg getLeg() {
+
         return leg;
     }
 

@@ -61,7 +61,7 @@ public class MyGdxGame extends Game {
         l3.setSprite(new Sprite(new Texture(Gdx.files.internal("leg3.png"))));
         l3.setShape(Shape.LIGHT);
 
-        ArrayList<Part> legs=new ArrayList<Part>();
+        ArrayList<myDrawable> legs=new ArrayList<myDrawable>();
         legs.add(l1);
         legs.add(l2);
         legs.add(l3);
