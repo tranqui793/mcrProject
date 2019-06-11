@@ -13,6 +13,17 @@ public class Arm extends Part {
     }
 
     public void setWeapon(Weapon weapon) {
+        if(this.weapon != null) {
+            setEnergyCost(getEnergyCost() - this.weapon.getCost() + weapon.getCost());
+        } else {
+            setEnergyCost(getEnergyCost() + weapon.getCost());
+        }
+        setDamage(weapon.getDamage());
+        setAccuracy(weapon.getAccuracy());
+        setDamage(weapon.getDamage());
+        setAttackSpeed(weapon.getAttackSpeed());
+        setArmorPen(weapon.getArmorPen());
+        setShieldPen(weapon.getShieldPen());
         this.weapon = weapon;
     }
 
@@ -21,6 +32,13 @@ public class Arm extends Part {
     }
 
     public void setWeight(Weight weight) {
+        if(this.weight != null){
+            setEnergyCost(getEnergyCost() - this.weight.getCost() + weight.getCost());
+        } else {
+            setEnergyCost(weight.getCost());
+        }
+        setAttackSpeedMult(weight.getAttackSpeedMult());
+        setDamageMult(weight.getDamageMult());
         this.weight = weight;
     }
 

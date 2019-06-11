@@ -2,7 +2,7 @@ package com.mygdx.game;
 
 import com.mygdx.game.Part.Part;
 
-public abstract class Robot {
+public class Robot {
 
     private int armor;
     private int dodge;
@@ -13,7 +13,7 @@ public abstract class Robot {
 
     private Part arm;
     private Part frame;
-    private Part Head;
+    private Part head;
     private Part leg;
 
     public Part getArm() {
@@ -33,11 +33,11 @@ public abstract class Robot {
     }
 
     public Part getHead() {
-        return Head;
+        return head;
     }
 
     public void setHead(Part head) {
-        Head = head;
+        this.head = head;
     }
 
     public Part getLeg() {
