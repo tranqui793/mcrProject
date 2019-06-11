@@ -31,9 +31,10 @@ public enum Material implements myDrawable {
 
     @Override
     public void draw(Batch batch, float x, float y) {
-        sprite.setPosition(x,y);
+        sprite.setPosition(x, y);
         sprite.draw(batch);
 
+    }
     public int getEnergyCost() {
         return cost;
     }

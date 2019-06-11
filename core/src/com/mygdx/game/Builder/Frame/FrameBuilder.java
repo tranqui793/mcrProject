@@ -30,21 +30,21 @@ public  class FrameBuilder {
     }
 
     public FrameBuilder buildHead(HeadBuilder headBuilder){
-        this.frame.setHead(headBuilder.getHead());
+     //   this.frame.setHead(headBuilder.getHead());
         return this;
     }
 
     public FrameBuilder buildArm(ArmBuilder armBuilder){
 
-        this.frame.setLeftArm(armBuilder.getArm());
-        this.frame.setRightArm(armBuilder.getArm());
+      //  this.frame.setLeftArm(armBuilder.getArm());
+    //    this.frame.setRightArm(armBuilder.getArm());
         return this;
     }
 
     public FrameBuilder buildLeg(LegBuilder legBuilder){
 
-        this.frame.setLeftLeg(legBuilder.getLeg());
-        this.frame.setRightLeg(legBuilder.getLeg());
+     //   this.frame.setLeftLeg(legBuilder.getLeg());
+      //  this.frame.setRightLeg(legBuilder.getLeg());
         return this;
 
 

@@ -23,7 +23,7 @@ public class Robot extends Actor {
     private Frame frame;
 
     
-    private Part frame;
+
 
     private Part head;
     private Part leg;
@@ -31,8 +31,8 @@ public class Robot extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        float frameY = getY()+ frame.heightOffset();
-        float frameX = getX()+ frame.widthOffset();
+        float frameY = getY()+ heightOffset();
+        float frameX = getX()+ widthOffset();
 
         leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
         leg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
@@ -42,11 +42,20 @@ public class Robot extends Actor {
 
         rightArm.draw(batch, (int) (frameX + frame.getAnchorRightArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorRightArm().y * frame.getSprite().getHeight()));
     }
-
+    public int widthOffset() {
+        return (int) (-frame.getSprite().getHeight() / 2);
+    }
+    public int heightOffset() {
+        if (leg != null) {
+            return (int) (leg.getSprite().getHeight() * ((Leg)leg).getHooktoFrame().y - frame.getSprite().getHeight() * frame.getAnchorLeg().y);
+        }else {
+            return 0;
+        }
+    }
     public void draw(SpriteBatch batch, int x, int y){
 
-        float frameX = x+ frame.widthOffset();
-        float frameY = y+ frame.heightOffset();
+        float frameX = x+ widthOffset();
+        float frameY = y+ heightOffset();
 
         leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
         leg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
@@ -95,7 +104,7 @@ public class Robot extends Actor {
     }
 
     public void setLeg(Part leg) {
-        ((Frame)frame).setLeg((Leg)leg);
+
         this.leg = leg;
     }
 
