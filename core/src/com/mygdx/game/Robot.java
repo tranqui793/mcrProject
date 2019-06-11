@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.mygdx.game.Part.Part;
 
 public class Robot {
+    private long timeOfLastAttack = System.currentTimeMillis();
     private int energy = 200;
 
     private Part leftArm;
@@ -11,6 +12,22 @@ public class Robot {
     private Part head;
     private Part leftLeg;
     private Part rightLeg;
+
+    public void shootLeft(Robot target){
+
+    }
+
+    public void shootRight(Robot target){
+
+    }
+
+    public long getTimeOfLastAttack() {
+        return timeOfLastAttack;
+    }
+
+    public void setTimeOfLastAttack(long timeOfLastAttack) {
+        this.timeOfLastAttack = timeOfLastAttack;
+    }
 
     public int getArmor() {
         return frame.getArmor() + rightLeg.getArmor() + leftLeg.getArmor();

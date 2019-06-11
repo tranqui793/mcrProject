@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MyGdxGame implements ApplicationListener {
 	private SpriteBatch batch;
 	private BitmapFont font;
+	private Robot player;
+	private Robot enemy;
+
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
@@ -27,6 +30,7 @@ public class MyGdxGame implements ApplicationListener {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
 		batch.begin();
 		font.draw(batch, "Mcr Project", 200, 200);
 		batch.end();
@@ -43,4 +47,29 @@ public class MyGdxGame implements ApplicationListener {
 	@Override
 	public void resume() {
 	}
+
+	private void update(){
+		long currentTime = System.currentTimeMillis();
+		long playerElapsedTime = player.getTimeOfLastAttack() - currentTime;
+		long enemyElapsedTime = enemy.getTimeOfLastAttack() - currentTime;
+
+		if(player.getAttackSpeedLeft() >= playerElapsedTime){
+			player.shootLeft(enemy);
+			player.setTimeOfLastAttack(currentTime);
+		}
+		if(player.getAttackSpeedRight() >= playerElapsedTime){
+			player.shootRight(enemy);
+			player.setTimeOfLastAttack(currentTime);
+		}
+		if(enemy.getAttackSpeedLeft() >= playerElapsedTime){
+			enemy.shootLeft(player);
+			enemy.setTimeOfLastAttack(currentTime);
+		}
+		if(enemy.getAttackSpeedLeft() >= playerElapsedTime){
+			enemy.shootRight(player);
+			enemy.setTimeOfLastAttack(currentTime);
+		}
+
+	}
+
 }
