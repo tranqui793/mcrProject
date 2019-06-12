@@ -128,7 +128,7 @@ public class MyGdxGame implements ApplicationListener {
         enemyStats.setPosition(1600,80);
         stage1.addActor(playerStats);
         stage1.addActor(enemyStats);
-        stage1.addActor(new Bubble(500,233));
+
         //player.setPosition(100, 0);
     }
 
@@ -247,20 +247,26 @@ public class MyGdxGame implements ApplicationListener {
         if(!player.isDead()&&!enemy.isDead()){
 
             if (player.canAttackLeft(currentTime/1000)) {
+              stage1.addActor(new Bubble(300,350,512,450,175));
                 System.out.println("Player attacks enemy" + player.shootLeft(enemy));
 
             }
             if (player.canAttackRight(currentTime/1000)) {
+               stage1.addActor(new Bubble(300,350,512,650,175));
                 System.out.println("Player attacks enemy" + player.shootRight(enemy));
 
             }
 
 
             if (enemy.canAttackLeft(currentTime/1000)) {
+                stage1.addActor(new Bubble(1280,350,1480,450,175));
+
                 System.out.println("Enemy attacks enemy" + enemy.shootLeft(player));
 
             }
             if (enemy.canAttackRight(currentTime/1000)) {
+                stage1.addActor(new Bubble(1230,350,1430,450,175));
+
                 System.out.println("Enemy attacks enemy" + enemy.shootRight(player));
 
             }
