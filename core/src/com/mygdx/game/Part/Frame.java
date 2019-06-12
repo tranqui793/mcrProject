@@ -76,10 +76,11 @@ public class Frame extends Part {
     public void setShieldGenerator(ShieldGenerator shieldGenerator) {
         if(this.shieldGenerator != null){
             setEnergyCost(getEnergyCost() + shieldGenerator.getEnergyCost() - this.shieldGenerator.getEnergyCost());
+
         } else {
             setEnergyCost(getEnergyCost() + shieldGenerator.getEnergyCost());
         }
-        setShieldAmount(getShieldAmount());
+        setShieldAmount(shieldGenerator.getShieldAmount());
         this.shieldGenerator = shieldGenerator;
 
     }

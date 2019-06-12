@@ -27,9 +27,11 @@ public class Robot extends Actor{
 
     @Override
     public String toString() {
-        return  "shield amount = " + getShieldAmount() +
-                "\n dodge = " + getDodge() +
-                "\n armor = " + getArmor() +
+        return  "shield= " + shieldAmount +
+                "\n armor = " + armorAmount +
+
+                "\n\ndodge = " + getDodge() +
+
                 "\n energy = " + energy;
     }
 
@@ -47,6 +49,7 @@ public class Robot extends Actor{
         timeOfLastAttackLeft=System.currentTimeMillis()/1000;
         if(r.nextInt(99) >= chanceToMiss) {
             if (target.shieldAmount > 0) {
+
                 int damage = (int)(getShieldPenLeft() * getDamageLeft());
                 target.shieldAmount -= damage;
                 return " shield with his left arm for " + damage + ".";

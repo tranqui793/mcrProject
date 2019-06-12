@@ -25,7 +25,8 @@ public enum ShieldGenerator  implements myDrawable {
     }
 
     ShieldGenerator(int cost, int shieldAmount){
-
+        this.cost= cost;
+        this.shieldAmount=shieldAmount;
     }
 
     @Override
