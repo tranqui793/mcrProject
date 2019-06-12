@@ -30,6 +30,7 @@ public class MyGdxGame implements ApplicationListener {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+		update();
 
 		batch.begin();
 		font.draw(batch, "Mcr Project", 200, 200);
@@ -53,20 +54,20 @@ public class MyGdxGame implements ApplicationListener {
 		long playerElapsedTime = player.getTimeOfLastAttack() - currentTime;
 		long enemyElapsedTime = enemy.getTimeOfLastAttack() - currentTime;
 
-		if(player.getAttackSpeedLeft() >= playerElapsedTime){
-			player.shootLeft(enemy);
+		if(player.getAttackSpeedLeft() >= playerElapsedTime/1000){
+			System.out.println("Player attacks enemy" + player.shootLeft(enemy));
 			player.setTimeOfLastAttack(currentTime);
 		}
-		if(player.getAttackSpeedRight() >= playerElapsedTime){
-			player.shootRight(enemy);
+		if(player.getAttackSpeedRight() >= playerElapsedTime/1000){
+			System.out.println("Player attacks enemy" + player.shootRight(enemy));
 			player.setTimeOfLastAttack(currentTime);
 		}
-		if(enemy.getAttackSpeedLeft() >= playerElapsedTime){
-			enemy.shootLeft(player);
+		if(enemy.getAttackSpeedLeft() >= enemyElapsedTime/1000){
+			System.out.println("Enemy attacks player" + enemy.shootLeft(player));
 			enemy.setTimeOfLastAttack(currentTime);
 		}
-		if(enemy.getAttackSpeedLeft() >= playerElapsedTime){
-			enemy.shootRight(player);
+		if(enemy.getAttackSpeedLeft() >= enemyElapsedTime/1000){
+			System.out.println("Enemy attacks player" + enemy.shootLeft(player));
 			enemy.setTimeOfLastAttack(currentTime);
 		}
 
