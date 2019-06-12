@@ -115,9 +115,9 @@ public class MyGdxGame implements ApplicationListener {
         Random rand = new Random();
 
 //
-        int random = rand.nextInt(3);
+        int random = rand.nextInt(5)+1;
 
-        Robot[] robotArray = new Robot[5];
+        Robot[] robotArray = new Robot[random];
 
 
         RobotBuilder robotBuilder = new RobotBuilder();
@@ -126,13 +126,13 @@ public class MyGdxGame implements ApplicationListener {
         LegBuilder lb = new LegBuilder();
         ArmBuilder ab = new ArmBuilder();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < random; i++) {
 
             robotArray[i] = robotBuilder.buildFrame(fb.buildMaterial().buildMaterial().build())
-                    .buildHead(hb.buildSensor(Sensor.values()[random]).build())
-                    .buildLeftArm(ab.buildWeapon(Weapon.values()[random]).buildWeight(Weight.values()[random]).build())
-                    .buildRightArm(ab.buildWeapon(Weapon.values()[random]).buildWeight(Weight.values()[random]).build())
-                    .buildLegs(lb.buildShape(Shape.values()[random]).build()).build();
+                    .buildHead(hb.buildSensor(Sensor.values()[rand.nextInt(3)]).build())
+                    .buildLeftArm(ab.buildWeapon(Weapon.values()[rand.nextInt(3)]).buildWeight(Weight.values()[rand.nextInt(3)]).build())
+                    .buildRightArm(ab.buildWeapon(Weapon.values()[rand.nextInt(3)]).buildWeight(Weight.values()[rand.nextInt(3)]).build())
+                    .buildLegs(lb.buildShape(Shape.values()[rand.nextInt(3)]).build()).build();
 
         }
     }
