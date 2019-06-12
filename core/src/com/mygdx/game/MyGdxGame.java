@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.AssetLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 
@@ -14,8 +15,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Builder.ArmBuilder;
@@ -37,7 +37,9 @@ public class MyGdxGame implements ApplicationListener {
     private Frame f;
 
     private Stage stage;
-    private Stage stage2;
+
+    private Stage stage1;
+
     private Texture myTexture;
     private TextureRegion myTextureRegion;
     private TextureRegionDrawable myTexRegionDrawable;
@@ -54,7 +56,8 @@ public class MyGdxGame implements ApplicationListener {
     private RobotBuilder rb;
 
     private boolean inFight = false;
-
+    Label playerStats;
+    Label enemyStats;
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -65,7 +68,10 @@ public class MyGdxGame implements ApplicationListener {
         Frame f3 = new WoodFrameBuilder().buildMaterial().buildShieldGenerator().build();
 
         stage = new Stage();
-        stage2 = new Stage();
+
+        stage1 = new Stage();
+
+
         Gdx.input.setInputProcessor(stage); //Start taking input from the ui
 
         font = new BitmapFont();
@@ -110,7 +116,19 @@ public class MyGdxGame implements ApplicationListener {
         stage.addActor(legPicker);
         stage.addActor(button);
 
-        stage2.addActor(new Bubble(500,233));
+        player.setPosition(100, 0);
+
+
+        playerStats = new Label("", new Skin(Gdx.files.internal("uiskin.json")));
+        enemyStats = new Label("", new Skin(Gdx.files.internal("uiskin.json")));
+
+        playerStats.setPosition(170,80);
+
+
+        enemyStats.setPosition(1600,80);
+        stage1.addActor(playerStats);
+        stage1.addActor(enemyStats);
+        stage1.addActor(new Bubble(500,233));
         //player.setPosition(100, 0);
     }
 
@@ -154,6 +172,9 @@ public class MyGdxGame implements ApplicationListener {
 
     
 
+
+ 
+
     @Override
     public void dispose() {
         batch.dispose();
@@ -162,8 +183,12 @@ public class MyGdxGame implements ApplicationListener {
 
     @Override
     public void render() {
+
+
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         if (inFight) {
 
 
@@ -183,10 +208,17 @@ public class MyGdxGame implements ApplicationListener {
             m2.setToTranslation(1920 - 128, 256, 0);
             m2.val[0] = -1;
 
+
+
+
+            playerStats.setText(player.toString());
+            enemyStats.setText(enemy.toString());
+
+            stage1.draw();
             batch2.setTransformMatrix(m2);
             batch2.end();
-
             update();
+
         } else {
 
             stage.act(Gdx.graphics.getDeltaTime()); //Perform ui logic
@@ -209,6 +241,7 @@ public class MyGdxGame implements ApplicationListener {
 
     private void update() {
         long currentTime = System.currentTimeMillis();
+
 
 
         if(!player.isDead()&&!enemy.isDead()){
@@ -234,6 +267,7 @@ public class MyGdxGame implements ApplicationListener {
         }else{
             //inFight=false;
         }
+
 
 
     }

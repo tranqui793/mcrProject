@@ -25,6 +25,14 @@ public class Robot extends Actor{
     private int shieldAmount = 0;
     private int armorAmount = 0;
 
+    @Override
+    public String toString() {
+        return  "shield amount = " + getShieldAmount() +
+                "\n dodge = " + getDodge() +
+                "\n armor = " + getArmor() +
+                "\n energy = " + energy;
+    }
+
     private Part leftArm;
     private Part rightArm;
     private Frame frame;
