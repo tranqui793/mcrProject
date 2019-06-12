@@ -23,13 +23,12 @@ public class Frame extends Part {
     private Vector2 anchorLeg = new Vector2(0.5f, 0.3f);
    
 
-    private Vector2 anchorLeftArm = new Vector2(0.4f, 0.67f);
-    private Vector2 anchorRightArm = new Vector2(0.6f, 0.67f);
+    private Vector2 anchorLeftArm = new Vector2(0.4f, 0.63f);
+    private Vector2 anchorRightArm = new Vector2(0.6f, 0.7f);
 
     private Material material;
     private ShieldGenerator shieldGenerator;
 
-    private myDrawable test;
 
 
     public Vector2 getAnchorHead() {

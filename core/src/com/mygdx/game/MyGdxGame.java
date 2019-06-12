@@ -44,6 +44,7 @@ public class MyGdxGame implements ApplicationListener {
     private TextureRegion myTextureRegion;
     private TextureRegionDrawable myTexRegionDrawable;
     private ImageButton button;
+    private ImageButton restart;
     private RightArmPicker rightArmPicker;
     private LeftArmPicker leftArmPicker;
     private LegPicker legPicker;
@@ -52,10 +53,12 @@ public class MyGdxGame implements ApplicationListener {
     private Robot player;
     private Robot enemy;
 
-
+    private Image endImage;
+    private Image endLoseImage;
     private RobotBuilder rb;
 
     private boolean inFight = false;
+    private boolean fightOver=false;
     Label playerStats;
     Label enemyStats;
     @Override
@@ -93,6 +96,29 @@ public class MyGdxGame implements ApplicationListener {
         rightArmPicker = new RightArmPicker(256, 256, 512, 256, rb);
         leftArmPicker = new LeftArmPicker(1408, 256, 512, 256, rb);
         legPicker = new LegPicker(832, 128, 256, 256, rb);
+
+
+        endLoseImage = new Image(new TextureRegion(new Texture(Gdx.files.internal("lose.png"))));
+        endLoseImage.setPosition(832 - 128, 750);
+        endLoseImage.setSize(512,128);
+
+
+        endImage = new Image(new TextureRegion(new Texture(Gdx.files.internal("win.png"))));
+        endImage.setPosition(832 - 128, 750);
+        endImage.setSize(512,128);
+
+        restart = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("restartwhite.png")))),
+                new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("restartgray.png"))))
+        );
+        restart.setSize(512, 128);
+        restart.setPosition(832 - 128, 150);
+
+        restart.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                restart();
+            }
+        });
 
 
         button = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buildButtonWhite.png")))),
@@ -134,6 +160,7 @@ public class MyGdxGame implements ApplicationListener {
 
 
     public void buildAndFight() {
+        Gdx.input.setInputProcessor(stage1);
         player = rb.build();
         player.resetShieldAndArmor();
         enemy = generateEnemys();
@@ -173,6 +200,14 @@ public class MyGdxGame implements ApplicationListener {
     
 
 
+    public void restart(){
+        Gdx.input.setInputProcessor(stage);
+        inFight=false;
+        fightOver=false;
+        endLoseImage.remove();
+        endImage.remove();
+        restart.remove();
+    }
  
 
     @Override
@@ -246,31 +281,41 @@ public class MyGdxGame implements ApplicationListener {
 
         if(!player.isDead()&&!enemy.isDead()){
 
-            if (player.canAttackLeft(currentTime/1000)) {
+            if (player.canAttackLeft(currentTime)) {
               stage1.addActor(new Bubble(300,350,512,450,175));
                 System.out.println("Player attacks enemy" + player.shootLeft(enemy));
 
             }
-            if (player.canAttackRight(currentTime/1000)) {
+            if (player.canAttackRight(currentTime)) {
                stage1.addActor(new Bubble(300,350,512,650,175));
                 System.out.println("Player attacks enemy" + player.shootRight(enemy));
 
             }
 
 
-            if (enemy.canAttackLeft(currentTime/1000)) {
+            if (enemy.canAttackLeft(currentTime)) {
                 stage1.addActor(new Bubble(1280,350,1480,450,175));
 
                 System.out.println("Enemy attacks enemy" + enemy.shootLeft(player));
 
             }
-            if (enemy.canAttackRight(currentTime/1000)) {
+            if (enemy.canAttackRight(currentTime)) {
                 stage1.addActor(new Bubble(1230,350,1430,450,175));
 
                 System.out.println("Enemy attacks enemy" + enemy.shootRight(player));
 
             }
         }else{
+
+            if(!fightOver) {
+                if(player.isDead()){
+                    stage1.addActor(endLoseImage);
+                }else{
+                    stage1.addActor(endImage);
+                }
+                stage1.addActor(restart);
+                fightOver=true;
+            }
             //inFight=false;
         }
 
