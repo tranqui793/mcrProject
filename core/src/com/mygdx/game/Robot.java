@@ -9,6 +9,9 @@ import com.mygdx.game.Part.Leg;
 import com.mygdx.game.Part.Part;
 
 
+/**
+ * Class representing a fighting robot.
+ */
 public class Robot extends Actor{
 
     private long timeOfLastAttack = System.currentTimeMillis();

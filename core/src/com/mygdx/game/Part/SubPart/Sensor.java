@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.myDrawable;
 
+/**
+ * Enum representing sensors.
+ * It can enhance dodge and accury, also has a cost.
+ */
 public enum Sensor implements myDrawable {
     THERMIC(0, 20,"head1.png"), HOLOGRAPHIC(10, 10,"head2.png"), SONIC(20, 0,"head3.png");
 

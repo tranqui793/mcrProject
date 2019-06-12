@@ -4,6 +4,9 @@ import com.mygdx.game.Part.Arm;
 import com.mygdx.game.Part.SubPart.Weapon;
 import com.mygdx.game.Part.SubPart.Weight;
 
+/**
+ * Class representing an arm builder.
+ */
 public class ArmBuilder implements PartBuilder{
     private Arm armTmp = new Arm() ;
 

@@ -3,6 +3,9 @@ package com.mygdx.game.Builder;
 import com.mygdx.game.Part.Leg;
 import com.mygdx.game.Part.SubPart.Shape;
 
+/**
+ * Class representing a leg builder.
+ */
 public class LegBuilder implements PartBuilder{
 
     private Leg legTmp = new Leg();

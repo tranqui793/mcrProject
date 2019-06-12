@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.myDrawable;
 
-
+/**
+ * Class part defining what stats a part can have.
+ */
 public  abstract class Part  implements myDrawable {
 
     protected Sprite sprite;

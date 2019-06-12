@@ -9,6 +9,11 @@ import com.mygdx.game.Part.SubPart.Material;
 import com.mygdx.game.Part.SubPart.ShieldGenerator;
 import com.mygdx.game.myDrawable;
 
+/**
+ * Class representing a frame.
+ * It has a shield generator who provides energy for the robot.
+ * It is made of a material.
+ */
 public class Frame extends Part {
 
 

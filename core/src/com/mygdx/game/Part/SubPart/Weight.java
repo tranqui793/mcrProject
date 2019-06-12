@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.myDrawable;
 
+/**
+ * Enum representing the weight of a part.
+ */
 public enum Weight implements myDrawable {
     HEAVY(1.5, 0.5,"arm1.png"), MEDIUM(1, 1,"arm2.png"), LIGHT(0.5, 1.5,"arm3.png");
 
