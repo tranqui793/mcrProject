@@ -184,11 +184,11 @@ public class MyGdxGame implements ApplicationListener {
 
 
             if (enemy.canAttackLeft(currentTime/1000)) {
-                System.out.println("Player attacks enemy" + enemy.shootLeft(player));
+                System.out.println("Enemy attacks enemy" + enemy.shootLeft(player));
 
             }
             if (enemy.canAttackRight(currentTime/1000)) {
-                System.out.println("Player attacks enemy" + enemy.shootRight(player));
+                System.out.println("Enemy attacks enemy" + enemy.shootRight(player));
 
             }
         }

@@ -13,6 +13,7 @@ import java.util.Random;
 public class Robot extends Actor{
 
 
+
     private long timeOfLastAttackLeft = 0;
     private long timeOfLastAttackRight = 0;
     private int energy = 200;
