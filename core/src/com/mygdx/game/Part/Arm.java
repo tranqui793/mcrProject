@@ -14,6 +14,8 @@ public class Arm extends Part {
     private Weapon weapon;
     private Weight weight;
 
+    private Vector2 anchorWeapon= new Vector2(0.5f,0.3f);
+    private Vector2 hookToArm= new Vector2(0.5f,0.5f);
 
     public Weapon getWeapon() {
         return weapon;
@@ -38,7 +40,11 @@ public class Arm extends Part {
 
     @Override
     public void draw(Batch batch, float x, float y) {
-        weight.draw(batch,x - weight.getSprite().getWidth() * hooktoFrame.x, y - weight.getSprite().getHeight() * hooktoFrame.y);
+        int trueX= (int) (x - weight.getSprite().getWidth() * hooktoFrame.x);
+        int trueY= (int) (y - weight.getSprite().getHeight()* hooktoFrame.y);
+        weight.draw(batch,trueX, trueY);
+        weapon.draw(batch,trueX+weight.getSprite().getWidth()*anchorWeapon.x -weapon.getSprite().getWidth()*hookToArm.x,
+                trueY+weight.getSprite().getHeight()*anchorWeapon.y -weapon.getSprite().getHeight()*hookToArm.y);
       /*  sprite.setPosition(x - sprite.getWidth() * hooktoFrame.x, y - sprite.getHeight() * hooktoFrame.y);
         sprite.setColor(Color.GRAY);
         sprite.draw(batch);

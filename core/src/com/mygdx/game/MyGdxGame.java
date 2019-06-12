@@ -141,6 +141,8 @@ if(inFight) {
 
     batch2.setTransformMatrix(m2);
     batch2.end();
+
+    update();
 }else{
 
         stage.act(Gdx.graphics.getDeltaTime()); //Perform ui logic
