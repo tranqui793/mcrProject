@@ -33,6 +33,7 @@ public class MyGdxGame implements ApplicationListener {
     private Frame f;
 
     private Stage stage;
+    private Stage stage2;
     private Texture myTexture;
     private TextureRegion myTextureRegion;
     private TextureRegionDrawable myTexRegionDrawable;
@@ -60,6 +61,7 @@ public class MyGdxGame implements ApplicationListener {
         Frame f3 = new WoodFrameBuilder().buildMaterial().buildShieldGenerator().build();
 
         stage = new Stage();
+        stage2 = new Stage();
         Gdx.input.setInputProcessor(stage); //Start taking input from the ui
 
         font = new BitmapFont();
@@ -102,7 +104,7 @@ public class MyGdxGame implements ApplicationListener {
         stage.addActor(leftArmPicker);
         stage.addActor(legPicker);
         stage.addActor(button);
-        player.setPosition(100, 0);
+        //player.setPosition(100, 0);
     }
 
 
