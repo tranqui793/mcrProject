@@ -55,9 +55,9 @@ public class MyGdxGame implements ApplicationListener {
 		  batch = new SpriteBatch();
         batch2 = new SpriteBatch();
 
-        Frame f1= new CarbonFrameBuilder().build().getFrame();
-        Frame f2 = new TitaniumFrameBuilder().build().getFrame();
-        Frame f3 = new WoodFrameBuilder().build().getFrame();
+        Frame f1= new CarbonFrameBuilder().buildMaterial().buildShieldGenerator().build();
+        Frame f2 = new TitaniumFrameBuilder().buildMaterial().buildShieldGenerator().build();
+        Frame f3 = new WoodFrameBuilder().buildMaterial().buildShieldGenerator().build();
 
         stage=new Stage();
         Gdx.input.setInputProcessor(stage); //Start taking input from the ui
