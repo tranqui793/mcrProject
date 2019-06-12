@@ -11,9 +11,9 @@ import com.mygdx.game.myDrawable;
  * It has a cost and enhances armor.
  */
 public enum Material implements myDrawable {
-    TITANIUM(50, 100,"frame1.png"),
-    WOOD(1,10,"frame2.png"),
-    CARBON(25, 50,"frame3.png");
+    TITANIUM(50, 100,"TITANIUM.png"),
+    WOOD(1,10,"WOOD.png"),
+    CARBON(25, 50,"CARBON.png");
 
     private Sprite sprite;
     private int cost;

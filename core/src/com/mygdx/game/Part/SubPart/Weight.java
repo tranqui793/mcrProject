@@ -10,7 +10,7 @@ import com.mygdx.game.myDrawable;
  * Enum representing the weight of a part.
  */
 public enum Weight implements myDrawable {
-    HEAVY(1.5, 0.5,"arm1.png"), MEDIUM(1, 1,"arm2.png"), LIGHT(0.5, 1.5,"arm3.png");
+    HEAVY(1.5, 0.5,"HEAVY_ARM.png"), MEDIUM(1, 1,"MEDIUM_ARM.png"), LIGHT(0.5, 1.5,"LIGHT_ARM.png");
 
     private Sprite sprite;
 

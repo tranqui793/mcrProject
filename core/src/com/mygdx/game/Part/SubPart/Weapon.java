@@ -14,9 +14,9 @@ import java.sql.Driver;
  * IT has many stacks and a cost.
  */
 public enum Weapon implements myDrawable {
-    KINETIC(1, 1, 80, 2, 6, 10,"head1.png"),
-    MISSILE(1.2, 0.8, 60, 30, 0.5, 10,"head2.png"),
-    LASER(0.5, 1.5, 100, 10, 1, 10,"head3.png");
+    KINETIC(1, 1, 80, 2, 6, 10,"KINETIC.png"),
+    MISSILE(1.2, 0.8, 60, 30, 0.5, 10,"MISSILE.png"),
+    LASER(0.5, 1.5, 100, 10, 1, 10,"LASER.png");
     private Sprite sprite;
 
     private double armorPen;
