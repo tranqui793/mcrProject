@@ -102,12 +102,15 @@ public class MyGdxGame implements ApplicationListener {
             }
         });
         //stage.addActor(r);
+
         stage.addActor(framePicker);
         stage.addActor(headPicker);
         stage.addActor(rightArmPicker);
         stage.addActor(leftArmPicker);
         stage.addActor(legPicker);
         stage.addActor(button);
+
+        stage2.addActor(new Bubble(500,233));
         //player.setPosition(100, 0);
     }
 
@@ -229,7 +232,7 @@ public class MyGdxGame implements ApplicationListener {
 
             }
         }else{
-            inFight=false;
+            //inFight=false;
         }
 
 
