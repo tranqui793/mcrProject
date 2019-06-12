@@ -18,12 +18,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.mygdx.game.Builder.ArmBuilder;
 import com.mygdx.game.Builder.Frame.*;
+import com.mygdx.game.Builder.HeadBuilder;
+import com.mygdx.game.Builder.LegBuilder;
 import com.mygdx.game.Part.SubPart.*;
 import com.mygdx.game.Part.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class MyGdxGame implements ApplicationListener {
     private SpriteBatch batch;
@@ -111,10 +115,41 @@ public class MyGdxGame implements ApplicationListener {
     public void buildAndFight() {
         player = rb.build();
         player.resetShieldAndArmor();
-        enemy = rb.build();
+        enemy = generateEnemys();
         enemy.resetShieldAndArmor();
         inFight = true;
     }
+
+	private Robot generateEnemys() {
+
+        Random rand = new Random();
+
+//
+        int random = rand.nextInt(2)+1;
+
+        Robot[] robotArray = new Robot[random];
+
+
+        RobotBuilder robotBuilder = new RobotBuilder();
+        FrameBuilder fb = new WoodFrameBuilder();
+        HeadBuilder hb = new HeadBuilder();
+        LegBuilder lb = new LegBuilder();
+        ArmBuilder ab = new ArmBuilder();
+
+        for (int i = 0; i < random; i++) {
+
+            robotArray[i] = robotBuilder.buildFrame(fb.buildShieldGenerator().buildMaterial().build())
+                    .buildHead(hb.buildSensor(Sensor.values()[rand.nextInt(3)]).build())
+                    .buildLeftArm(ab.buildWeapon(Weapon.values()[rand.nextInt(3)]).buildWeight(Weight.values()[rand.nextInt(3)]).build())
+                    .buildRightArm(ab.buildWeapon(Weapon.values()[rand.nextInt(3)]).buildWeight(Weight.values()[rand.nextInt(3)]).build())
+                    .buildLegs(lb.buildShape(Shape.values()[rand.nextInt(3)]).build()).build();
+
+        }
+
+        return robotArray[0];
+    }
+
+    
 
     @Override
     public void dispose() {
