@@ -38,16 +38,16 @@ public class Robot extends Actor{
         Random r = new Random();
         timeOfLastAttackLeft=System.currentTimeMillis()/1000;
         if(r.nextInt(99) >= chanceToMiss) {
-            if (shieldAmount > 0) {
+            if (target.shieldAmount > 0) {
                 int damage = (int)(getShieldPenLeft() * getDamageLeft());
-                shieldAmount -= damage;
+                target.shieldAmount -= damage;
                 return " shield with his left arm for " + damage + ".";
-            } else if(armorAmount > 0) {
+            } else if(target.armorAmount > 0) {
                 int damage = (int)(getArmorPenLeft() * getDamageLeft());
-                armorAmount -= damage;
-                if(armorAmount <= 0){
+                target.armorAmount -= damage;
+                if(target.armorAmount <= 0){
                     target.setDead();
-                    return " with his left arm and killed his opponent.";
+                    return " with his left arm for "+damage+"  and killed his opponent.";
                 }
                 return " armor with his left arm for " + damage + ".";
             }
@@ -61,16 +61,16 @@ public class Robot extends Actor{
         Random r = new Random();
         timeOfLastAttackRight=System.currentTimeMillis()/1000;
         if(r.nextInt(99) >= chanceToMiss) {
-            if (shieldAmount > 0) {
+            if (target.shieldAmount > 0) {
                 int damage = (int)(getShieldPenRight() * getDamageRight());
-                shieldAmount -= damage;
+                target.shieldAmount -= damage;
                 return " shield with his right arm for " + damage + ".";
-            } else if(armorAmount > 0) {
+            } else if(target.armorAmount > 0) {
                 int damage = (int)(getArmorPenRight() * getDamageRight());
-                armorAmount -= damage;
-                if(armorAmount <= 0){
+                target.armorAmount -= damage;
+                if(target.armorAmount <= 0){
                     target.setDead();
-                    return " with his right arm and killed his opponent.";
+                    return " with his right arm for "+damage+" and killed his opponent.";
                 }
                 return " armor with his right arm for " + damage + ".";
             }

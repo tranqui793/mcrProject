@@ -11,7 +11,7 @@ import com.mygdx.game.myDrawable;
  * It enhances dodge and armor and has a cost.
  */
 public enum Shape implements myDrawable {
-    HEAVY(0, 50,"HEAVY_LEG_4.png"), MEDIUM(10, 25,"MEDIUM_LEG_4.png"), LIGHT(20, 0,"LIGHT_LEG_4.png");
+    HEAVY(0, 50,"HEAVY_LEG_6.png"), MEDIUM(10, 25,"MEDIUM_LEG_6.png"), LIGHT(20, 0,"LIGHT_LEG_6.png");
 
     private Sprite sprite;
 
