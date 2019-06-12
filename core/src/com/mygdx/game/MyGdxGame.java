@@ -26,10 +26,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyGdxGame implements ApplicationListener {
-      private SpriteBatch batch;
+    private SpriteBatch batch;
     private SpriteBatch batch2;
     private BitmapFont font;
-    
+
     private Frame f;
 
     private Stage stage;
@@ -42,24 +42,24 @@ public class MyGdxGame implements ApplicationListener {
     private LegPicker legPicker;
     private HeadPicker headPicker;
     private FramePicker framePicker;
-	private Robot player;
-	private Robot enemy;
+    private Robot player;
+    private Robot enemy;
 
 
-	private RobotBuilder rb;
+    private RobotBuilder rb;
 
-	private boolean inFight=false;
+    private boolean inFight = false;
 
-	@Override
-	public void create() {
-		  batch = new SpriteBatch();
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
         batch2 = new SpriteBatch();
 
-        Frame f1= new CarbonFrameBuilder().buildMaterial().buildShieldGenerator().build();
+        Frame f1 = new CarbonFrameBuilder().buildMaterial().buildShieldGenerator().build();
         Frame f2 = new TitaniumFrameBuilder().buildMaterial().buildShieldGenerator().build();
         Frame f3 = new WoodFrameBuilder().buildMaterial().buildShieldGenerator().build();
 
-        stage=new Stage();
+        stage = new Stage();
         Gdx.input.setInputProcessor(stage); //Start taking input from the ui
 
         font = new BitmapFont();
@@ -67,27 +67,27 @@ public class MyGdxGame implements ApplicationListener {
 
         f = new Frame();
         Head h = new Head();
-        player=new Robot();
+        player = new Robot();
 
 
-        rb= new RobotBuilder();
+        rb = new RobotBuilder();
 
-        ArrayList <myDrawable> frames = new ArrayList<myDrawable>();
+        ArrayList<myDrawable> frames = new ArrayList<myDrawable>();
         frames.add(f1);
         frames.add(f2);
         frames.add(f3);
-        framePicker= new FramePicker(832,400,256,256,frames,rb);
-        headPicker= new HeadPicker(832,696,256,256,rb);
-        rightArmPicker=new RightArmPicker(256,256,512,256,rb);
-        leftArmPicker= new LeftArmPicker(1408,256,512,256,rb);
-        legPicker=new LegPicker(832,128,256,256,rb);
+        framePicker = new FramePicker(832, 400, 256, 256, frames, rb);
+        headPicker = new HeadPicker(832, 696, 256, 256, rb);
+        rightArmPicker = new RightArmPicker(256, 256, 512, 256, rb);
+        leftArmPicker = new LeftArmPicker(1408, 256, 512, 256, rb);
+        legPicker = new LegPicker(832, 128, 256, 256, rb);
 
 
-        button= new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buildButtonWhite.png")))),
+        button = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buildButtonWhite.png")))),
                 new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buildButtonGray.png"))))
-                );
-        button.setSize(512,128);
-        button.setPosition(832-128,950);
+        );
+        button.setSize(512, 128);
+        button.setPosition(832 - 128, 950);
 
         button.addListener(new ChangeListener() {
             @Override
@@ -99,98 +99,102 @@ public class MyGdxGame implements ApplicationListener {
         stage.addActor(framePicker);
         stage.addActor(headPicker);
         stage.addActor(rightArmPicker);
-         stage.addActor(leftArmPicker);
+        stage.addActor(leftArmPicker);
         stage.addActor(legPicker);
         stage.addActor(button);
-        player.setPosition(100,0);
-	}
-
-
-	public void buildAndFight(){
-	    player= rb.build();
-	    player.resetShieldAndArmor();
-	    enemy= rb.build();
-	    enemy.resetShieldAndArmor();
-	    inFight=true;
+        player.setPosition(100, 0);
     }
-	@Override
-	public void dispose() {
-		batch.dispose();
-		font.dispose();
-	}
 
-	@Override
-	public void render() {
+
+    public void buildAndFight() {
+        player = rb.build();
+        player.resetShieldAndArmor();
+        enemy = rb.build();
+        enemy.resetShieldAndArmor();
+        inFight = true;
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+        font.dispose();
+    }
+
+    @Override
+    public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-if(inFight) {
+        if (inFight) {
 
 
-    batch.begin();
-    //font.draw(batch, "Mcr Project", 200, 200);
-    player.draw(batch, 0, 0);
-    Matrix4 m = batch.getTransformMatrix();
+            batch.begin();
+            //font.draw(batch, "Mcr Project", 200, 200);
+            player.draw(batch, 0, 0);
+            Matrix4 m = batch.getTransformMatrix();
 
 
-    m.setToTranslation(128, 256, 0);
-    //batch.setTransformMatrix(m);
-    batch.end();
-    batch2.begin();
-    enemy.draw(batch2, 0, 0);
+            m.setToTranslation(128, 256, 0);
+            //batch.setTransformMatrix(m);
+            batch.end();
+            batch2.begin();
+            enemy.draw(batch2, 0, 0);
 
-    Matrix4 m2 = batch2.getTransformMatrix();
-    m2.setToTranslation(1920-128, 256, 0);
-    m2.val[0] = -1;
+            Matrix4 m2 = batch2.getTransformMatrix();
+            m2.setToTranslation(1920 - 128, 256, 0);
+            m2.val[0] = -1;
 
-    batch2.setTransformMatrix(m2);
-    batch2.end();
+            batch2.setTransformMatrix(m2);
+            batch2.end();
 
-    update();
-}else{
+            update();
+        } else {
 
-        stage.act(Gdx.graphics.getDeltaTime()); //Perform ui logic
-        stage.draw();
-}
-	}
+            stage.act(Gdx.graphics.getDeltaTime()); //Perform ui logic
+            stage.draw();
+        }
+    }
 
-	@Override
-	public void resize(int width, int height) {
-	}
+    @Override
+    public void resize(int width, int height) {
+    }
 
-	@Override
-	public void pause() {
-	}
+    @Override
+    public void pause() {
+    }
 
-	@Override
-	public void resume() {
-	}
-
-
-	private void update(){
-		long currentTime = System.currentTimeMillis();
-		long playerElapsedTime = player.getTimeOfLastAttack() - currentTime;
-		long enemyElapsedTime = enemy.getTimeOfLastAttack() - currentTime;
-
-		if(player.getAttackSpeedLeft() >= playerElapsedTime/1000){
-			System.out.println("Player attacks enemy" + player.shootLeft(enemy));
-			player.setTimeOfLastAttack(currentTime);
-		}
-		if(player.getAttackSpeedRight() >= playerElapsedTime/1000){
-			System.out.println("Player attacks enemy" + player.shootRight(enemy));
-			player.setTimeOfLastAttack(currentTime);
-		}
-		if(enemy.getAttackSpeedLeft() >= enemyElapsedTime/1000){
-			System.out.println("Enemy attacks player" + enemy.shootLeft(player));
-			enemy.setTimeOfLastAttack(currentTime);
-		}
-		if(enemy.getAttackSpeedLeft() >= enemyElapsedTime/1000){
-			System.out.println("Enemy attacks player" + enemy.shootLeft(player));
-			enemy.setTimeOfLastAttack(currentTime);
-		}
+    @Override
+    public void resume() {
+    }
 
 
+    private void update() {
+        long currentTime = System.currentTimeMillis();
 
-	}
+
+        if(!player.isDead()&&!enemy.isDead()){
+
+            if (player.canAttackLeft(currentTime/1000)) {
+                System.out.println("Player attacks enemy" + player.shootLeft(enemy));
+
+            }
+            if (player.canAttackRight(currentTime/1000)) {
+                System.out.println("Player attacks enemy" + player.shootRight(enemy));
+
+            }
+
+
+            if (enemy.canAttackLeft(currentTime/1000)) {
+                System.out.println("Player attacks enemy" + enemy.shootLeft(player));
+
+            }
+            if (enemy.canAttackRight(currentTime/1000)) {
+                System.out.println("Player attacks enemy" + enemy.shootRight(player));
+
+            }
+        }
+
+
+    }
 
 
 }

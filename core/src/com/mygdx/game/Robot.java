@@ -13,13 +13,13 @@ import java.util.Random;
 public class Robot extends Actor{
 
 
-    private long timeOfLastAttack = 0;
-
+    private long timeOfLastAttackLeft = 0;
+    private long timeOfLastAttackRight = 0;
     private int energy = 200;
     private boolean dead = false;
 
-    private int shieldAmount = getShieldAmount();
-    private int armorAmount = getArmor();
+    private int shieldAmount = 0;
+    private int armorAmount = 0;
 
     private Part leftArm;
     private Part rightArm;
@@ -32,6 +32,7 @@ public class Robot extends Actor{
     public String shootLeft(Robot target){
         int chanceToMiss = target.getDodge() - getAccuracyLeft();
         Random r = new Random();
+        timeOfLastAttackLeft=System.currentTimeMillis()/1000;
         if(r.nextInt(99) >= chanceToMiss) {
             if (shieldAmount > 0) {
                 int damage = (int)(getShieldPenLeft() * getDamageLeft());
@@ -41,7 +42,7 @@ public class Robot extends Actor{
                 int damage = (int)(getArmorPenLeft() * getDamageLeft());
                 armorAmount -= damage;
                 if(armorAmount <= 0){
-                    setDead();
+                    target.setDead();
                     return " with his left arm and killed his opponent.";
                 }
                 return " armor with his left arm for " + damage + ".";
@@ -51,8 +52,10 @@ public class Robot extends Actor{
     }
 
     public String shootRight(Robot target){
+
         int chanceToMiss = target.getDodge() - getAccuracyRight();
         Random r = new Random();
+        timeOfLastAttackRight=System.currentTimeMillis()/1000;
         if(r.nextInt(99) >= chanceToMiss) {
             if (shieldAmount > 0) {
                 int damage = (int)(getShieldPenRight() * getDamageRight());
@@ -62,7 +65,7 @@ public class Robot extends Actor{
                 int damage = (int)(getArmorPenRight() * getDamageRight());
                 armorAmount -= damage;
                 if(armorAmount <= 0){
-                    setDead();
+                    target.setDead();
                     return " with his right arm and killed his opponent.";
                 }
                 return " armor with his right arm for " + damage + ".";
@@ -72,6 +75,12 @@ public class Robot extends Actor{
 
     }
 
+    public boolean canAttackLeft(long currTime){
+        return timeOfLastAttackLeft+1/getAttackSpeedLeft()<currTime;
+    }
+    public boolean canAttackRight(long currTime){
+        return timeOfLastAttackRight+1/getAttackSpeedRight()<currTime;
+    }
     public boolean isDead() {
         return dead;
     }
@@ -80,12 +89,20 @@ public class Robot extends Actor{
         this.dead = true;
     }
 
-    public long getTimeOfLastAttack() {
-        return timeOfLastAttack;
+    public long getTimeOfLastAttackLeft() {
+        return timeOfLastAttackLeft;
     }
 
-    public void setTimeOfLastAttack(long timeOfLastAttack) {
-        this.timeOfLastAttack = timeOfLastAttack;
+    public void setTimeOfLastAttackLeft(long timeOfLastAttackLeft) {
+        this.timeOfLastAttackLeft = timeOfLastAttackLeft;
+    }
+
+    public long getTimeOfLastAttackRight() {
+        return timeOfLastAttackRight;
+    }
+
+    public void setTimeOfLastAttackRight(long timeOfLastAttackRight) {
+        this.timeOfLastAttackRight = timeOfLastAttackRight;
     }
 
     public int getArmor() {
@@ -163,11 +180,14 @@ if(!dead){
     }
 
     public int getDamageLeft() {
-        return (int)(leftArm.getDamage() * leftArm.getDamageMult());
+        Random r = new Random();
+        return (int)(leftArm.getDamage() * leftArm.getDamageMult()*(1+(r.nextFloat()-0.5f)/3));
     }
 
     public double getAttackSpeedLeft() {
-        return (int)(leftArm.getAttackSpeed() * leftArm.getAttackSpeedMult());
+
+                double i=(leftArm.getAttackSpeed() * leftArm.getAttackSpeedMult());
+                return i;
     }
 
     public double getArmorPenRight() {
@@ -179,11 +199,12 @@ if(!dead){
     }
 
     public int getDamageRight() {
-        return (int)(rightArm.getDamage() * rightArm.getDamageMult());
+        Random r= new Random();
+        return (int)(rightArm.getDamage() * rightArm.getDamageMult()*(1+(r.nextFloat()-0.5f)/3));
     }
 
     public double getAttackSpeedRight() {
-        return (int)(rightArm.getAttackSpeed() * rightArm.getAttackSpeedMult());
+        return rightArm.getAttackSpeed() * rightArm.getAttackSpeedMult();
     }
 
     public void setFrame(Part frame) {
