@@ -4,22 +4,27 @@ import com.mygdx.game.Part.Arm;
 import com.mygdx.game.Part.SubPart.Weapon;
 import com.mygdx.game.Part.SubPart.Weight;
 
-public class ArmBuilder {
-    private Arm arm = new Arm();
+public class ArmBuilder implements PartBuilder{
+    private Arm armTmp = new Arm() ;
 
-    public void buildNewArm(){
-        arm = new Arm();
+
+    public ArmBuilder buildWeight(Weight w){
+        armTmp.setWeight(w);
+        return this;
     }
 
-    public void buildWeight(Weight w){
-        arm.setWeight(w);
+    public ArmBuilder buildWeapon(Weapon w){
+        armTmp.setWeapon(w);
+        return this;
     }
 
-    public void buildWeapon(Weapon w){
-        arm.setWeapon(w);
-    }
+    public Arm build() throws NullPointerException{
 
-    public Arm getArm() throws NullPointerException{
+        Arm arm = new Arm();
+
+        arm.setWeapon(armTmp.getWeapon());
+        arm.setWeight(armTmp.getWeight());
+
         if(arm.getWeapon() == null || arm.getWeight() == null){
             throw new NullPointerException("Arm not built correctly");
         } else {

@@ -21,9 +21,9 @@ public class HeadPicker extends PartPicker {
     public void update() {
 
             currentPart=availableParts.get(currentIndex);
-            headbuilder.buildNewHead();
+//            headbuilder.buildNewHead();
             headbuilder.buildSensor((Sensor)currentPart);
-            target.buildHead(headbuilder.getHead());
+            target.buildHead(headbuilder.build());
 
             image.setDrawable(new SpriteDrawable(currentPart.getSprite()));
 

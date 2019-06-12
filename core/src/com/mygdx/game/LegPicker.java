@@ -21,9 +21,9 @@ update();
     public void update() {
 
             currentPart=availableParts.get(currentIndex);
-            legbuilder.buildNewLeg();
+  //          legbuilder.buildNewLeg();
             legbuilder.buildShape((Shape)currentPart);
-            target.buildLegs(legbuilder.getLeg());
+            target.buildLegs(legbuilder.build());
 
             image.setDrawable(new SpriteDrawable(currentPart.getSprite()));
 

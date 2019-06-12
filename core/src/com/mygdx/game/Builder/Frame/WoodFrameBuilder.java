@@ -5,10 +5,12 @@ import com.mygdx.game.Part.SubPart.ShieldGenerator;
 
 public class WoodFrameBuilder extends FrameBuilder{
 
-    public void buildMaterial(){
-        this.frame.setMaterial(Material.WOOD);
+    public FrameBuilder buildMaterial(){
+        this.frameTmp.setMaterial(Material.WOOD);
+        return this;
     }
-    public void buildShieldGenerator(){
-        this.frame.setShieldGenerator(ShieldGenerator.HEAVY);
+    public FrameBuilder buildShieldGenerator(){
+        this.frameTmp.setShieldGenerator(ShieldGenerator.HEAVY);
+        return this;
     }
 }

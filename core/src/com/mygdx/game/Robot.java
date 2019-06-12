@@ -248,4 +248,28 @@ if(!dead){
     public int getEnergy() {
         return energy;
     }
+
+    public Part getLeftArm() {
+        return leftArm;
+    }
+
+    public Part getRightArm() {
+        return rightArm;
+    }
+
+    public Frame getFrame() {
+        return frame;
+    }
+
+    public Part getHead() {
+        return head;
+    }
+
+    public Part getLeftLeg() {
+        return leftLeg;
+    }
+
+    public Part getRightLeg() {
+        return rightLeg;
+    }
 }

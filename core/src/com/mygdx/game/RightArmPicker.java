@@ -8,6 +8,6 @@ public class RightArmPicker extends ArmPicker {
     @Override
     public void update() {
         super.update();
-        target.buildRightArm(ab.getArm());
+        target.buildRightArm(ab.build());
     }
 }
