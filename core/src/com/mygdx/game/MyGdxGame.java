@@ -228,6 +228,8 @@ public class MyGdxGame implements ApplicationListener {
                 System.out.println("Enemy attacks enemy" + enemy.shootRight(player));
 
             }
+        }else{
+            inFight=false;
         }
 
 
