@@ -6,31 +6,48 @@ import com.mygdx.game.Part.Frame;
 import com.mygdx.game.Part.Head;
 import com.mygdx.game.Part.Leg;
 
+/**
+ * Class representing fighting robot builder.
+ */
 public class RobotBuilder {
-    private Robot robot = new Robot();
+    private Robot robotTmp = new Robot();
 
-    public void buildLeftArm(Arm a){
-        robot.setLeftArm(a);
+    public RobotBuilder buildLeftArm(Arm a){
+        robotTmp.setLeftArm(a);
+        return this;
     }
 
-    public void buildRightArm(Arm a){
-        robot.setRightArm(a);
+    public RobotBuilder buildRightArm(Arm a){
+        robotTmp.setRightArm(a);
+        return this;
     }
 
-    public void buildLegs(Leg l){
-        robot.setLeftLeg(l);
-        robot.setRightLeg(l);
+    public RobotBuilder buildLegs(Leg l){
+        robotTmp.setLeftLeg(l);
+        robotTmp.setRightLeg(l);
+        return this;
     }
 
-    public void buildHead(Head h){
-        robot.setHead(h);
+    public RobotBuilder buildHead(Head h){
+        robotTmp.setHead(h);
+        return this;
     }
 
-    public void buildFrame(Frame f){
-        robot.setFrame(f);
+    public RobotBuilder buildFrame(Frame f){
+        robotTmp.setFrame(f);
+        return this;
     }
 
     public Robot build(){
+
+        Robot robot = new Robot();
+        robot.setFrame(robotTmp.getFrame());
+        robot.setHead(robotTmp.getHead());
+        robot.setLeftArm(robotTmp.getLeftArm());
+        robot.setRightArm(robotTmp.getRightArm());
+        robot.setLeftLeg(robotTmp.getLeftLeg());
+        robot.setRightLeg(robotTmp.getRightLeg());
+
         return robot;
     }
 

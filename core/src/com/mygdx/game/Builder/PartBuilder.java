@@ -2,6 +2,9 @@ package com.mygdx.game.Builder;
 
 import com.mygdx.game.Part.Part;
 
-interface PartBuilder {
+/**
+ * Interface representing a part builder.
+ */
+public interface PartBuilder {
     Part build();
 }

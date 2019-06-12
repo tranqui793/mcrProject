@@ -1,6 +1,17 @@
 package com.mygdx.game.Part;
 
-public abstract class Part {
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.mygdx.game.myDrawable;
+
+/**
+ * Class part defining what stats a part can have.
+ */
+public  abstract class Part  implements myDrawable {
+
+    protected Sprite sprite;
+
+
 
     private int energyCost = 0;
     private int accuracy = 0;
@@ -22,8 +33,12 @@ public abstract class Part {
         this.shieldAmount = shieldAmount;
     }
 
+
+    public abstract void draw(Batch batch, float x, float y);
+
     public int getEnergyCost() {
         return energyCost;
+
     }
 
     public double getArmorPen() {
@@ -101,4 +116,14 @@ public abstract class Part {
     public void setEnergyCost(int energyCost) {
         this.energyCost = energyCost;
     }
+
+    public Sprite getSprite() {
+        return new Sprite(sprite);
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+
 }

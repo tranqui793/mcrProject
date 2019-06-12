@@ -3,11 +3,17 @@ package com.mygdx.game.Builder;
 import com.mygdx.game.Part.Leg;
 import com.mygdx.game.Part.SubPart.Shape;
 
-public class LegBuilder {
+/**
+ * Class representing a leg builder.
+ */
+public class LegBuilder implements PartBuilder{
 
-    private Leg leg = new Leg();
+    private Leg legTmp = new Leg();
 
-    public Leg getLeg() {
+    public Leg build() {
+
+        Leg leg = new Leg();
+        leg.setShape(legTmp.getShape());
 
         if(leg.getShape() == null)
             throw new NullPointerException("Shape missing");
@@ -15,13 +21,10 @@ public class LegBuilder {
         return leg;
     }
 
-    public void buildNewLeg(){
 
-        leg = new Leg();
-    }
+    public LegBuilder buildShape(Shape shape){
 
-    public void buildShape(Shape shape){
-
-        leg.setShape(shape);
+        legTmp.setShape(shape);
+        return this;
     }
 }

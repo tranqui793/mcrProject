@@ -3,25 +3,28 @@ package com.mygdx.game.Builder;
 import com.mygdx.game.Part.Head;
 import com.mygdx.game.Part.SubPart.Sensor;
 
-public class HeadBuilder{
+/**
+ * Class representing a head builder.
+ */
+public class HeadBuilder implements PartBuilder{
 
-    private Head head = new Head();
+    private Head headTmp = new Head();
 
-    public Head getHead()
+    public Head build()
     {
+        Head head = new Head();
+        head.setSensor(headTmp.getSensor());
         if(head.getSensor() == null)
             throw new NullPointerException("sensor missing");
 
         return head;
     }
 
-    public void buildNewHead(){
 
-        head = new Head();
-    }
 
-    public void buildSensor(Sensor sensor){
+    public HeadBuilder buildSensor(Sensor sensor){
 
-            head.setSensor(sensor);
+            headTmp.setSensor(sensor);
+            return this;
     }
 }

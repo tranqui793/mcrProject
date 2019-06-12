@@ -1,20 +1,34 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.mygdx.game.Part.Frame;
+import com.mygdx.game.Part.Leg;
 import com.mygdx.game.Part.Part;
-
 import java.util.Random;
 
-public class Robot {
-    private long timeOfLastAttack = 0;
+
+/**
+ * Class representing a fighting robot.
+ */
+public class Robot extends Actor{
+
+
+
+    private long timeOfLastAttackLeft = 0;
+    private long timeOfLastAttackRight = 0;
     private int energy = 200;
     private boolean dead = false;
 
-    private int shieldAmount = getShieldAmount();
-    private int armorAmount = getArmor();
+    private int shieldAmount = 0;
+    private int armorAmount = 0;
 
     private Part leftArm;
     private Part rightArm;
-    private Part frame;
+    private Frame frame;
+
     private Part head;
     private Part leftLeg;
     private Part rightLeg;
@@ -22,6 +36,7 @@ public class Robot {
     public String shootLeft(Robot target){
         int chanceToMiss = target.getDodge() - getAccuracyLeft();
         Random r = new Random();
+        timeOfLastAttackLeft=System.currentTimeMillis()/1000;
         if(r.nextInt(99) >= chanceToMiss) {
             if (shieldAmount > 0) {
                 int damage = (int)(getShieldPenLeft() * getDamageLeft());
@@ -31,7 +46,7 @@ public class Robot {
                 int damage = (int)(getArmorPenLeft() * getDamageLeft());
                 armorAmount -= damage;
                 if(armorAmount <= 0){
-                    setDead();
+                    target.setDead();
                     return " with his left arm and killed his opponent.";
                 }
                 return " armor with his left arm for " + damage + ".";
@@ -41,8 +56,10 @@ public class Robot {
     }
 
     public String shootRight(Robot target){
+
         int chanceToMiss = target.getDodge() - getAccuracyRight();
         Random r = new Random();
+        timeOfLastAttackRight=System.currentTimeMillis()/1000;
         if(r.nextInt(99) >= chanceToMiss) {
             if (shieldAmount > 0) {
                 int damage = (int)(getShieldPenRight() * getDamageRight());
@@ -52,15 +69,22 @@ public class Robot {
                 int damage = (int)(getArmorPenRight() * getDamageRight());
                 armorAmount -= damage;
                 if(armorAmount <= 0){
-                    setDead();
+                    target.setDead();
                     return " with his right arm and killed his opponent.";
                 }
                 return " armor with his right arm for " + damage + ".";
             }
         }
         return " and miss.";
+
     }
 
+    public boolean canAttackLeft(long currTime){
+        return timeOfLastAttackLeft+1/getAttackSpeedLeft()<currTime;
+    }
+    public boolean canAttackRight(long currTime){
+        return timeOfLastAttackRight+1/getAttackSpeedRight()<currTime;
+    }
     public boolean isDead() {
         return dead;
     }
@@ -69,32 +93,86 @@ public class Robot {
         this.dead = true;
     }
 
-    public long getTimeOfLastAttack() {
-        return timeOfLastAttack;
+    public long getTimeOfLastAttackLeft() {
+        return timeOfLastAttackLeft;
     }
 
-    public void setTimeOfLastAttack(long timeOfLastAttack) {
-        this.timeOfLastAttack = timeOfLastAttack;
+    public void setTimeOfLastAttackLeft(long timeOfLastAttackLeft) {
+        this.timeOfLastAttackLeft = timeOfLastAttackLeft;
+    }
+
+    public long getTimeOfLastAttackRight() {
+        return timeOfLastAttackRight;
+    }
+
+    public void setTimeOfLastAttackRight(long timeOfLastAttackRight) {
+        this.timeOfLastAttackRight = timeOfLastAttackRight;
     }
 
     public int getArmor() {
-        return frame.getArmor() + rightLeg.getArmor() + leftLeg.getArmor();
+        int armor= 0;
+        if( frame!=null){
+            armor+= frame.getArmor();
+        }
+
+        if( rightLeg!=null){
+            armor+= rightLeg.getArmor();
+        }
+
+        if( leftLeg!=null){
+            armor+= leftLeg.getArmor();
+        }
+
+        return armor;
     }
+
+
+    public int heightOffset() {
+        if (leftLeg != null) {
+            return (int) (leftLeg.getSprite().getHeight() * ((Leg)leftLeg).getHooktoFrame().y - frame.getSprite().getHeight() * frame.getAnchorLeg().y);
+        }else {
+            return 0;
+        }
+    }
+    public void draw(SpriteBatch batch, int x, int y){
+if(!dead){
+
+        float frameX = x;
+        float frameY = y+ heightOffset();
+
+        leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
+        leftLeg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
+        head.draw(batch, (int) (frameX + frame.getAnchorHead().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorHead().y * frame.getSprite().getHeight()));
+
+
+        frame.draw(batch,frameX,frameY);
+
+        rightArm.draw(batch, (int) (frameX + frame.getAnchorRightArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorRightArm().y * frame.getSprite().getHeight()));
+
+}
+    }
+
 
     public int getDodge() {
         return head.getDodge() + leftLeg.getDodge() + rightLeg.getDodge();
+
     }
 
     public int getAccuracyLeft() {
         return head.getAccuracy() + leftArm.getAccuracy();
     }
 
+
     public int getAccuracyRight() {
         return head.getAccuracy() + rightArm.getAccuracy();
+
     }
 
     public int getShieldAmount() {
-        return frame.getShieldAmount();
+        if(frame!=null){
+            return frame.getShieldAmount();
+        }
+        return 0;
     }
 
     public double getArmorPenLeft() {
@@ -106,11 +184,14 @@ public class Robot {
     }
 
     public int getDamageLeft() {
-        return (int)(leftArm.getDamage() * leftArm.getDamageMult());
+        Random r = new Random();
+        return (int)(leftArm.getDamage() * leftArm.getDamageMult()*(1+(r.nextFloat()-0.5f)/3));
     }
 
     public double getAttackSpeedLeft() {
-        return (int)(leftArm.getAttackSpeed() * leftArm.getAttackSpeedMult());
+
+                double i=(leftArm.getAttackSpeed() * leftArm.getAttackSpeedMult());
+                return i;
     }
 
     public double getArmorPenRight() {
@@ -122,11 +203,12 @@ public class Robot {
     }
 
     public int getDamageRight() {
-        return (int)(rightArm.getDamage() * rightArm.getDamageMult());
+        Random r= new Random();
+        return (int)(rightArm.getDamage() * rightArm.getDamageMult()*(1+(r.nextFloat()-0.5f)/3));
     }
 
     public double getAttackSpeedRight() {
-        return (int)(rightArm.getAttackSpeed() * rightArm.getAttackSpeedMult());
+        return rightArm.getAttackSpeed() * rightArm.getAttackSpeedMult();
     }
 
     public void setFrame(Part frame) {
@@ -135,7 +217,7 @@ public class Robot {
         } else {
             energy -= frame.getEnergyCost();
         }
-        this.frame = frame;
+        this.frame = (Frame) frame;
     }
 
     public void setHead(Part head) {
@@ -183,7 +265,36 @@ public class Robot {
         this.rightArm = rightArm;
     }
 
+    public void resetShieldAndArmor(){
+        dead=false;
+        armorAmount= getArmor();
+        shieldAmount= getShieldAmount();
+    }
     public int getEnergy() {
         return energy;
+    }
+
+    public Part getLeftArm() {
+        return leftArm;
+    }
+
+    public Part getRightArm() {
+        return rightArm;
+    }
+
+    public Frame getFrame() {
+        return frame;
+    }
+
+    public Part getHead() {
+        return head;
+    }
+
+    public Part getLeftLeg() {
+        return leftLeg;
+    }
+
+    public Part getRightLeg() {
+        return rightLeg;
     }
 }

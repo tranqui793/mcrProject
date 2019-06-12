@@ -1,7 +1,19 @@
 package com.mygdx.game.Part.SubPart;
 
-public enum Sensor {
-    THERMIC(0, 20), HOLOGRAPHIC(10, 10), SONIC(20, 0);
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.mygdx.game.myDrawable;
+
+/**
+ * Enum representing sensors.
+ * It can enhance dodge and accury, also has a cost.
+ */
+public enum Sensor implements myDrawable {
+    THERMIC(0, 20,"head1.png"), HOLOGRAPHIC(10, 10,"head2.png"), SONIC(20, 0,"head3.png");
+
+    private Sprite sprite;
 
     private int dodge;
     private int accuracy;
@@ -19,8 +31,25 @@ public enum Sensor {
         return cost;
     }
 
-    Sensor(int d, int a){
+    Sensor(int d, int a,String path){
         dodge = d;
         accuracy = a;
+        sprite=new Sprite(new Texture(Gdx.files.internal(path)));
+    }
+
+    @Override
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return new Sprite(sprite);
+    }
+
+    @Override
+    public void draw(Batch batch, float x, float y) {
+        sprite.setPosition(x,y);
+        sprite.draw(batch);
     }
 }
