@@ -10,7 +10,7 @@ import com.mygdx.game.MyGdxGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "hello-world";
+		cfg.title = "BuildFighter!";
 		cfg.width = 1920;
 		cfg.height = 1080;
 
