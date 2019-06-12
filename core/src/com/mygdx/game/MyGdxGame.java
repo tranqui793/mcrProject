@@ -18,12 +18,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.mygdx.game.Builder.ArmBuilder;
 import com.mygdx.game.Builder.Frame.*;
+import com.mygdx.game.Builder.HeadBuilder;
+import com.mygdx.game.Builder.LegBuilder;
 import com.mygdx.game.Part.SubPart.*;
 import com.mygdx.game.Part.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class MyGdxGame implements ApplicationListener {
       private SpriteBatch batch;
@@ -104,6 +108,34 @@ public class MyGdxGame implements ApplicationListener {
         stage.addActor(button);
         player.setPosition(100,0);
 	}
+
+
+	private void generateEnemys() {
+
+        Random rand = new Random();
+
+//
+        int random = rand.nextInt(3);
+
+        Robot[] robotArray = new Robot[5];
+
+
+        RobotBuilder robotBuilder = new RobotBuilder();
+        FrameBuilder fb = new WoodFrameBuilder();
+        HeadBuilder hb = new HeadBuilder();
+        LegBuilder lb = new LegBuilder();
+        ArmBuilder ab = new ArmBuilder();
+
+        for (int i = 0; i < 5; i++) {
+
+            robotArray[i] = robotBuilder.buildFrame(fb.buildMaterial().buildMaterial().build())
+                    .buildHead(hb.buildSensor(Sensor.values()[random]).build())
+                    .buildLeftArm(ab.buildWeapon(Weapon.values()[random]).buildWeight(Weight.values()[random]).build())
+                    .buildRightArm(ab.buildWeapon(Weapon.values()[random]).buildWeight(Weight.values()[random]).build())
+                    .buildLegs(lb.buildShape(Shape.values()[random]).build()).build();
+
+        }
+    }
 
 
 	public void buildAndFight(){
