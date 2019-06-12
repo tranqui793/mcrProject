@@ -87,9 +87,10 @@ update();
 
             currentPart=availableParts.get(currentIndex);
             currentWeapon=weapons.get(currentWeaponIndex);
-            ab.buildNewArm();
+          //  ab.buildNewArm();
             ab.buildWeight((Weight) currentPart);
             ab.buildWeapon((Weapon)currentWeapon);
+
 
             image.setDrawable(new SpriteDrawable(currentPart.getSprite()));
             imageWeapon.setDrawable(new SpriteDrawable(currentWeapon.getSprite()));

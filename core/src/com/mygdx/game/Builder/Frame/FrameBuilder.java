@@ -1,27 +1,28 @@
 package com.mygdx.game.Builder.Frame;
 
+import com.mygdx.game.Builder.PartBuilder;
 import com.mygdx.game.Part.Frame;
 import com.mygdx.game.Part.SubPart.Material;
 import com.mygdx.game.Part.SubPart.ShieldGenerator;
 
-public abstract class FrameBuilder {
-    public Frame frame = new Frame();
 
-    public Frame getFrame() {
+public abstract class FrameBuilder implements PartBuilder {
+    public Frame frameTmp = new Frame();
+
+    ///build the frame with parameters set
+    public Frame build(){
+
+        Frame frame = new Frame();
+
+        frame.setMaterial(frameTmp.getMaterial());
+        frame.setShieldGenerator(frameTmp.getShieldGenerator());
+
         return frame;
     }
-    public void buildNewFrame(){
-        this.frame = new Frame();
-    }
 
-    public abstract void buildMaterial();
-
-
-    public FrameBuilder build(){
-        buildMaterial();
-        buildShieldGenerator();
-        return this;
-    }
-    public abstract void buildShieldGenerator();
+    ///build the shield generator of the frame
+    public abstract FrameBuilder buildShieldGenerator();
+    ///build the material of the frame
+    public abstract FrameBuilder buildMaterial();
 
 }

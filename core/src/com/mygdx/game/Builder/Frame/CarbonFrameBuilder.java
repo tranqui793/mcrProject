@@ -5,10 +5,12 @@ import com.mygdx.game.Part.SubPart.ShieldGenerator;
 
 public class CarbonFrameBuilder extends FrameBuilder {
 
-    public void buildMaterial(){
-        this.frame.setMaterial(Material.CARBON);
+    public FrameBuilder buildMaterial(){
+        this.frameTmp.setMaterial(Material.CARBON);
+        return this;
     }
-    public void buildShieldGenerator(){
-        this.frame.setShieldGenerator(ShieldGenerator.MEDIUM);
+    public FrameBuilder buildShieldGenerator(){
+        this.frameTmp.setShieldGenerator(ShieldGenerator.MEDIUM);
+        return this;
     }
 }

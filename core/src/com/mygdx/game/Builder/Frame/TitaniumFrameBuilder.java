@@ -5,10 +5,12 @@ import com.mygdx.game.Part.SubPart.ShieldGenerator;
 
 public class TitaniumFrameBuilder extends FrameBuilder{
 
-    public void buildMaterial(){
-        this.frame.setMaterial(Material.TITANIUM);
+    public FrameBuilder buildMaterial(){
+        this.frameTmp.setMaterial(Material.TITANIUM);
+        return this;
     }
-    public void buildShieldGenerator(){
-        this.frame.setShieldGenerator(ShieldGenerator.LIGHT);
+    public FrameBuilder buildShieldGenerator(){
+        this.frameTmp.setShieldGenerator(ShieldGenerator.LIGHT);
+        return this;
     }
 }
