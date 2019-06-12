@@ -18,7 +18,7 @@ public class Arm extends Part {
     private Weight weight;
 
     private Vector2 anchorWeapon= new Vector2(0.7f,0.3f);
-    private Vector2 hookToArm= new Vector2(0.5f,0.5f);
+    private Vector2 hookToArm= new Vector2(0.25f,0.5f);
 
     public Weapon getWeapon() {
         return weapon;
