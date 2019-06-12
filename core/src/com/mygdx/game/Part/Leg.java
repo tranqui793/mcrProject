@@ -13,7 +13,7 @@ import com.mygdx.game.Part.SubPart.Shape;
  */
 public class Leg extends Part{
 
-    private Vector2 hooktoFrame = new Vector2(0.5f,0.9f);
+    private Vector2 hooktoFrame = new Vector2(0.5f,0.68f);
     private String mobility;
 
 

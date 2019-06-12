@@ -46,7 +46,7 @@ public class Robot extends Actor{
     public String shootLeft(Robot target){
         int chanceToMiss = target.getDodge() - getAccuracyLeft();
         Random r = new Random();
-        timeOfLastAttackLeft=System.currentTimeMillis()/1000;
+        timeOfLastAttackLeft=System.currentTimeMillis();
         if(r.nextInt(99) >= chanceToMiss) {
             if (target.shieldAmount > 0) {
 
@@ -70,7 +70,7 @@ public class Robot extends Actor{
 
         int chanceToMiss = target.getDodge() - getAccuracyRight();
         Random r = new Random();
-        timeOfLastAttackRight=System.currentTimeMillis()/1000;
+        timeOfLastAttackRight=System.currentTimeMillis();
         if(r.nextInt(99) >= chanceToMiss) {
             if (target.shieldAmount > 0) {
                 int damage = (int)(getShieldPenRight() * getDamageRight());
@@ -91,10 +91,10 @@ public class Robot extends Actor{
     }
 
     public boolean canAttackLeft(long currTime){
-        return timeOfLastAttackLeft+1/getAttackSpeedLeft()<currTime;
+        return timeOfLastAttackLeft+1000f/getAttackSpeedLeft()<currTime;
     }
     public boolean canAttackRight(long currTime){
-        return timeOfLastAttackRight+1/getAttackSpeedRight()<currTime;
+        return timeOfLastAttackRight+1000f/getAttackSpeedRight()<currTime;
     }
     public boolean isDead() {
         return dead;
@@ -146,21 +146,21 @@ public class Robot extends Actor{
         }
     }
     public void draw(SpriteBatch batch, int x, int y){
-if(!dead){
+        if(!dead){
 
         float frameX = x;
         float frameY = y+ heightOffset();
 
         leftArm.draw(batch, (int) (frameX + frame.getAnchorLeftArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeftArm().y * frame.getSprite().getHeight()));
-        leftLeg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
         head.draw(batch, (int) (frameX + frame.getAnchorHead().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorHead().y * frame.getSprite().getHeight()));
 
 
         frame.draw(batch,frameX,frameY);
+        leftLeg.draw(batch, (int) (frameX + frame.getAnchorLeg().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorLeg().y * frame.getSprite().getHeight()));
 
         rightArm.draw(batch, (int) (frameX + frame.getAnchorRightArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorRightArm().y * frame.getSprite().getHeight()));
 
-}
+        }
     }
 
 

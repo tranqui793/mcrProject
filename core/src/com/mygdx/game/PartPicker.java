@@ -39,7 +39,7 @@ public abstract class PartPicker extends Table {
         availableParts=parts;
         setPosition(x, y);
         setSize(width, height);
-        setDebug(true);
+        //setDebug(true);
         leftArrow = new ImageButton(new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("leftArrow.png"))))); //Set the button up
         leftArrow.addListener(new ChangeListener() {
             @Override
