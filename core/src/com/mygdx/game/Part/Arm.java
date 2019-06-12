@@ -7,7 +7,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Part.SubPart.Weapon;
 import com.mygdx.game.Part.SubPart.Weight;
 
-
+/**
+ * Class representing an arm.
+ * It has a weapon and a weight.
+ */
 public class Arm extends Part {
 
    private Vector2 hooktoFrame = new Vector2(0.1f,0.9f);

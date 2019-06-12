@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.myDrawable;
 
+/**
+ * Enum representing a shield generator.
+ * It enhances shield amount and has a cost.
+ */
 public enum ShieldGenerator  implements myDrawable {
     LIGHT(10, 20), MEDIUM(20, 40), HEAVY(40, 80);
 

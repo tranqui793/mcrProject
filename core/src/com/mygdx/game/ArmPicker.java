@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class defining what an arm picker needs.
+ */
 public abstract class ArmPicker extends PartPicker {
     ArmBuilder ab;
 

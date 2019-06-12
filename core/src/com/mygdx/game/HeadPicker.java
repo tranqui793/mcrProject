@@ -8,6 +8,9 @@ import com.mygdx.game.Part.SubPart.Shape;
 
 import java.util.Arrays;
 
+/**
+ * Class defining a head picker.
+ */
 public class HeadPicker extends PartPicker {
     private HeadBuilder headbuilder;
     public HeadPicker(float x, float y, int height, int width, RobotBuilder target) {

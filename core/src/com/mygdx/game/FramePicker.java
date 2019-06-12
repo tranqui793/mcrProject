@@ -7,6 +7,9 @@ import com.mygdx.game.Part.Part;
 
 import java.util.ArrayList;
 
+/**
+ * Class representing the frame picker.
+ */
 public class FramePicker extends PartPicker {
 
     public FramePicker(float x, float y, int height, int width, ArrayList<myDrawable> parts, RobotBuilder target) {

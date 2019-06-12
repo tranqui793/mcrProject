@@ -10,6 +10,9 @@ import com.mygdx.game.Part.Part;
 import java.util.Random;
 
 
+/**
+ * Class representing a fighting robot.
+ */
 public class Robot extends Actor{
 
 

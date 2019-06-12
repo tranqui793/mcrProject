@@ -9,6 +9,10 @@ import com.mygdx.game.myDrawable;
 
 import java.sql.Driver;
 
+/**
+ * Enum representing weapons.
+ * IT has many stacks and a cost.
+ */
 public enum Weapon implements myDrawable {
     KINETIC(1, 1, 80, 2, 6, 10,"head1.png"),
     MISSILE(1.2, 0.8, 60, 30, 0.5, 10,"head2.png"),

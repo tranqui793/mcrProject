@@ -7,6 +7,10 @@ import com.badlogic.gdx.math.Vector2;
 
 import com.mygdx.game.Part.SubPart.Shape;
 
+/**
+ * Class representing a leg.
+ * Its shape defines it's stats.
+ */
 public class Leg extends Part{
 
     private Vector2 hooktoFrame = new Vector2(0.5f,0.9f);

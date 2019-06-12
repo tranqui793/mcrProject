@@ -3,6 +3,9 @@ package com.mygdx.game.Builder;
 import com.mygdx.game.Part.Head;
 import com.mygdx.game.Part.SubPart.Sensor;
 
+/**
+ * Class representing a head builder.
+ */
 public class HeadBuilder implements PartBuilder{
 
     private Head headTmp = new Head();

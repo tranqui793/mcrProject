@@ -6,6 +6,9 @@ import com.mygdx.game.Part.Frame;
 import com.mygdx.game.Part.Head;
 import com.mygdx.game.Part.Leg;
 
+/**
+ * Class representing fighting robot builder.
+ */
 public class RobotBuilder {
     private Robot robotTmp = new Robot();
 

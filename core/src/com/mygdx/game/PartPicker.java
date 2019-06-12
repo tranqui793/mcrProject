@@ -21,6 +21,9 @@ import com.mygdx.game.Part.Part;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class defining what a every part picker needs.
+ */
 public abstract class PartPicker extends Table {
 
     ImageButton leftArrow;

@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.myDrawable;
 
+/**
+ * Enum representing the materials a farme can be made of.
+ * It has a cost and enhances armor.
+ */
 public enum Material implements myDrawable {
     TITANIUM(50, 100,"frame1.png"),
     WOOD(1,10,"frame2.png"),

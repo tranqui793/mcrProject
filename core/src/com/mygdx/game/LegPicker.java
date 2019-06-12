@@ -9,6 +9,9 @@ import com.mygdx.game.Part.SubPart.Shape;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class defining the leg picker.
+ */
 public class LegPicker extends PartPicker {
     private LegBuilder legbuilder;
     public LegPicker(float x, float y, int height, int width,RobotBuilder target) {

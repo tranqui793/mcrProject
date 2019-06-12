@@ -5,7 +5,9 @@ import com.mygdx.game.Part.Frame;
 import com.mygdx.game.Part.SubPart.Material;
 import com.mygdx.game.Part.SubPart.ShieldGenerator;
 
-
+/**
+ * Class representing a frame builder.
+ */
 public abstract class FrameBuilder implements PartBuilder {
     public Frame frameTmp = new Frame();
 
