@@ -11,7 +11,7 @@ import com.mygdx.game.myDrawable;
  * It can enhance dodge and accury, also has a cost.
  */
 public enum Sensor implements myDrawable {
-    THERMIC(0, 20,"head1.png"), HOLOGRAPHIC(10, 10,"head2.png"), SONIC(20, 0,"head3.png");
+    THERMIC(5, 20,"THERMIC_4.png"), HOLOGRAPHIC(15, 10,"HOLOGRAPHIC_4.png"), SONIC(25, 0,"SONIC_4.png");
 
     private Sprite sprite;
 

@@ -13,12 +13,12 @@ import com.mygdx.game.Part.SubPart.Weight;
  */
 public class Arm extends Part {
 
-   private Vector2 hooktoFrame = new Vector2(0.1f,0.9f);
+   private Vector2 hooktoFrame = new Vector2(0.5f,0.7f);
     private Weapon weapon;
     private Weight weight;
 
-    private Vector2 anchorWeapon= new Vector2(0.5f,0.3f);
-    private Vector2 hookToArm= new Vector2(0.5f,0.5f);
+    private Vector2 anchorWeapon= new Vector2(0.7f,0.3f);
+    private Vector2 hookToArm= new Vector2(0.25f,0.5f);
 
     public Weapon getWeapon() {
         return weapon;

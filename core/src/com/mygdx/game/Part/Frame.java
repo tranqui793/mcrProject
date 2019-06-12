@@ -17,10 +17,10 @@ import com.mygdx.game.myDrawable;
 public class Frame extends Part {
 
 
-    private Vector2 anchorHead = new Vector2(0.5f, 0.9f);
+    private Vector2 anchorHead = new Vector2(0.5f, 0.75f);
    
 
-    private Vector2 anchorLeg = new Vector2(0.5f, 0.1f);
+    private Vector2 anchorLeg = new Vector2(0.5f, 0.3f);
    
 
     private Vector2 anchorLeftArm = new Vector2(0.4f, 0.67f);
@@ -76,10 +76,11 @@ public class Frame extends Part {
     public void setShieldGenerator(ShieldGenerator shieldGenerator) {
         if(this.shieldGenerator != null){
             setEnergyCost(getEnergyCost() + shieldGenerator.getEnergyCost() - this.shieldGenerator.getEnergyCost());
+
         } else {
             setEnergyCost(getEnergyCost() + shieldGenerator.getEnergyCost());
         }
-        setShieldAmount(getShieldAmount());
+        setShieldAmount(shieldGenerator.getShieldAmount());
         this.shieldGenerator = shieldGenerator;
 
     }

@@ -12,7 +12,7 @@ import com.mygdx.game.Part.SubPart.Sensor;
  */
 public class Head extends Part {
 
-    private Vector2 hooktoFrame = new Vector2(0.5f,0.1f);
+    private Vector2 hooktoFrame = new Vector2(0.5f,0.4f);
 
 
     //private Vector2 anchorSensor= new Vector2(0.8f,0.5f);
