@@ -7,13 +7,19 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.Part.Frame;
 import com.mygdx.game.Part.Leg;
 import com.mygdx.game.Part.Part;
+import java.util.Random;
 
 
 public class Robot extends Actor{
 
-    private long timeOfLastAttack = System.currentTimeMillis();
+
+    private long timeOfLastAttack = 0;
 
     private int energy = 200;
+    private boolean dead = false;
+
+    private int shieldAmount = getShieldAmount();
+    private int armorAmount = getArmor();
 
     private Part leftArm;
     private Part rightArm;
@@ -23,13 +29,55 @@ public class Robot extends Actor{
     private Part leftLeg;
     private Part rightLeg;
 
+    public String shootLeft(Robot target){
+        int chanceToMiss = target.getDodge() - getAccuracyLeft();
+        Random r = new Random();
+        if(r.nextInt(99) >= chanceToMiss) {
+            if (shieldAmount > 0) {
+                int damage = (int)(getShieldPenLeft() * getDamageLeft());
+                shieldAmount -= damage;
+                return " shield with his left arm for " + damage + ".";
+            } else if(armorAmount > 0) {
+                int damage = (int)(getArmorPenLeft() * getDamageLeft());
+                armorAmount -= damage;
+                if(armorAmount <= 0){
+                    setDead();
+                    return " with his left arm and killed his opponent.";
+                }
+                return " armor with his left arm for " + damage + ".";
+            }
+        }
+        return " and miss.";
+    }
 
-    public void shootLeft(Robot target){
+    public String shootRight(Robot target){
+        int chanceToMiss = target.getDodge() - getAccuracyRight();
+        Random r = new Random();
+        if(r.nextInt(99) >= chanceToMiss) {
+            if (shieldAmount > 0) {
+                int damage = (int)(getShieldPenRight() * getDamageRight());
+                shieldAmount -= damage;
+                return " shield with his right arm for " + damage + ".";
+            } else if(armorAmount > 0) {
+                int damage = (int)(getArmorPenRight() * getDamageRight());
+                armorAmount -= damage;
+                if(armorAmount <= 0){
+                    setDead();
+                    return " with his right arm and killed his opponent.";
+                }
+                return " armor with his right arm for " + damage + ".";
+            }
+        }
+        return " and miss.";
 
     }
 
-    public void shootRight(Robot target){
+    public boolean isDead() {
+        return dead;
+    }
 
+    public void setDead() {
+        this.dead = true;
     }
 
     public long getTimeOfLastAttack() {
@@ -41,7 +89,20 @@ public class Robot extends Actor{
     }
 
     public int getArmor() {
-        return frame.getArmor() + rightLeg.getArmor() + leftLeg.getArmor();
+        int armor= 0;
+        if( frame!=null){
+            armor+= frame.getArmor();
+        }
+
+        if( rightLeg!=null){
+            armor+= rightLeg.getArmor();
+        }
+
+        if( leftLeg!=null){
+            armor+= leftLeg.getArmor();
+        }
+
+        return armor;
     }
 
 
@@ -53,6 +114,7 @@ public class Robot extends Actor{
         }
     }
     public void draw(SpriteBatch batch, int x, int y){
+if(!dead){
 
         float frameX = x;
         float frameY = y+ heightOffset();
@@ -66,6 +128,7 @@ public class Robot extends Actor{
 
         rightArm.draw(batch, (int) (frameX + frame.getAnchorRightArm().x * frame.getSprite().getWidth()), (int) (frameY + frame.getAnchorRightArm().y * frame.getSprite().getHeight()));
 
+}
     }
 
 
@@ -85,7 +148,10 @@ public class Robot extends Actor{
     }
 
     public int getShieldAmount() {
-        return frame.getShieldAmount();
+        if(frame!=null){
+            return frame.getShieldAmount();
+        }
+        return 0;
     }
 
     public double getArmorPenLeft() {
@@ -174,6 +240,11 @@ public class Robot extends Actor{
         this.rightArm = rightArm;
     }
 
+    public void resetShieldAndArmor(){
+        dead=false;
+        armorAmount= getArmor();
+        shieldAmount= getShieldAmount();
+    }
     public int getEnergy() {
         return energy;
     }

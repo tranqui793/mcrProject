@@ -64,10 +64,10 @@ public class MyGdxGame implements ApplicationListener {
 
         font = new BitmapFont();
         font.setColor(Color.RED);
-        player = new Robot();
+
         f = new Frame();
         Head h = new Head();
-
+        player=new Robot();
 
 
         rb= new RobotBuilder();
@@ -108,7 +108,9 @@ public class MyGdxGame implements ApplicationListener {
 
 	public void buildAndFight(){
 	    player= rb.build();
+	    player.resetShieldAndArmor();
 	    enemy= rb.build();
+	    enemy.resetShieldAndArmor();
 	    inFight=true;
     }
 	@Override
@@ -128,6 +130,7 @@ if(inFight) {
     //font.draw(batch, "Mcr Project", 200, 200);
     player.draw(batch, 0, 0);
     Matrix4 m = batch.getTransformMatrix();
+
 
     m.setToTranslation(128, 256, 0);
     //batch.setTransformMatrix(m);
@@ -168,22 +171,24 @@ if(inFight) {
 		long playerElapsedTime = player.getTimeOfLastAttack() - currentTime;
 		long enemyElapsedTime = enemy.getTimeOfLastAttack() - currentTime;
 
-		if(player.getAttackSpeedLeft() >= playerElapsedTime){
-			player.shootLeft(enemy);
+		if(player.getAttackSpeedLeft() >= playerElapsedTime/1000){
+			System.out.println("Player attacks enemy" + player.shootLeft(enemy));
 			player.setTimeOfLastAttack(currentTime);
 		}
-		if(player.getAttackSpeedRight() >= playerElapsedTime){
-			player.shootRight(enemy);
+		if(player.getAttackSpeedRight() >= playerElapsedTime/1000){
+			System.out.println("Player attacks enemy" + player.shootRight(enemy));
 			player.setTimeOfLastAttack(currentTime);
 		}
-		if(enemy.getAttackSpeedLeft() >= playerElapsedTime){
-			enemy.shootLeft(player);
+		if(enemy.getAttackSpeedLeft() >= enemyElapsedTime/1000){
+			System.out.println("Enemy attacks player" + enemy.shootLeft(player));
 			enemy.setTimeOfLastAttack(currentTime);
 		}
-		if(enemy.getAttackSpeedLeft() >= playerElapsedTime){
-			enemy.shootRight(player);
+		if(enemy.getAttackSpeedLeft() >= enemyElapsedTime/1000){
+			System.out.println("Enemy attacks player" + enemy.shootLeft(player));
 			enemy.setTimeOfLastAttack(currentTime);
 		}
+
+
 
 	}
 
